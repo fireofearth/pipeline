@@ -1,0 +1,50 @@
+__PIPELINE_INFO__: 
+    date_last_updated: 
+    name: 'Example Pipeline'
+    data_type: 
+    author: 'mnursey'
+    Kronos_version: '2.3.0'
+    host_cluster: 
+    version: '0.00.1'
+    input_type: 
+    date_created: '2019-05-07'
+    output_type: 
+__GENERAL__: 
+    docker: 'docker'
+__SHARED__: 
+    anno_loc: 
+    patch_loc: 
+    img_loc: 
+__SAMPLES__: 
+    # sample_id:
+    #    param1: value1
+    #    param2: value2
+
+    SET_0: 
+        task_a_config: '/home/molinux01/mnursey/example_pipeline/downsample_config.json'
+TASK_A: 
+    reserved: 
+        # do not change this section.
+        seed_version: '0.00.1'
+        component_version: '0.00.1'
+        component_name: 'kronos_component_docker'
+    run: 
+        interval_file: 
+        requirements: 
+            docker: 
+        boilerplate: 
+        use_cluster: False
+        num_cpus: 1
+        parallel_run: False
+        merge: True
+        add_breakpoint: False
+        memory: '128G'
+        forced_dependencies: []
+        env_vars: 
+        parallel_params: []
+    component: 
+        input_files: 
+            config_file_location: '/home/molinux01/cchen/ml/pipeline/create_groups_config.json'
+            docker_image: 'cchen/create_groups'
+        parameters: 
+        output_files: 

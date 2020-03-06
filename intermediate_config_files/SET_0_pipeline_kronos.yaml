@@ -1,0 +1,82 @@
+__PIPELINE_INFO__: 
+    date_last_updated: 
+    name: 'Preprocessing Pipeline'
+    data_type: 
+    author: 'mnursey'
+    Kronos_version: '2.3.0'
+    host_cluster: 
+    version: '0.00.1'
+    input_type: 
+    date_created: '2019-05-07'
+    output_type: 
+__GENERAL__: 
+    singularity: 'singularity'
+__SHARED__: 
+    anno_loc: 
+    patch_loc: 
+    img_loc: 
+__SAMPLES__: 
+    # sample_id:
+    #    param1: value1
+    #    param2: value2
+
+    SET_0: 
+        sort_loc: '/projects/ovcare/classification/1024_Sorted'
+        patch_loc: '/projects/ovcare/classification/1024_Patches'
+        aug_loc: '/projects/ovcare/classification/1024_Aug'
+        label_file_loc: '/projects/ovcare/classification/labels.txt'
+AUGMENT_DATA: 
+    reserved: 
+        # do not change this section.
+        seed_version: '0.00.1'
+        component_version: '0.00.1'
+        component_name: 'kronos_component_singularity'
+    run: 
+        interval_file: 
+        requirements: 
+            singularity: 
+        boilerplate: 
+        use_cluster: False
+        num_cpus: 1
+        parallel_run: False
+        merge: True
+        add_breakpoint: False
+        memory: '5G'
+        forced_dependencies: []
+        env_vars: 
+        parallel_params: []
+    component: 
+        input_files: 
+            patch_location: '/projects/ovcare/classification/1024_Patches'
+            augmented_location: '/projects/ovcare/classification/1024_Aug'
+            singularity_image: '/projects/ovcare/classification/src/docker_augment_data/augmentdata-latest.simg'
+        parameters: 
+        output_files: 
+SORT_PATCHES: 
+    reserved: 
+        # do not change this section.
+        seed_version: '0.00.1'
+        component_version: '0.00.1'
+        component_name: 'kronos_component_singularity'
+    run: 
+        interval_file: 
+        requirements: 
+            singularity: 
+        boilerplate: 
+        use_cluster: False
+        num_cpus: 1
+        parallel_run: False
+        merge: True
+        add_breakpoint: False
+        memory: '5G'
+        forced_dependencies: ['AUGMENT_DATA']
+        env_vars: 
+        parallel_params: []
+    component: 
+        input_files: 
+            sorted_location: '/projects/ovcare/classification/1024_Sorted'
+            labels_file_location: '/projects/ovcare/classification/labels.txt'
+            patch_location: '/projects/ovcare/classification/1024_Aug'
+            singularity_image: '/projects/ovcare/classification/src/docker_sort_patches_by_label/sortpatchesbylabel.simg'
+        parameters: 
+        output_files: 

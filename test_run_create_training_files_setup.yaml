@@ -1,0 +1,51 @@
+__PIPELINE_INFO__:
+    name: 'Example Pipeline'
+    version: '0.00.1'
+    author: 'mnursey'
+    data_type:
+    input_type:
+    output_type:
+    host_cluster:
+    date_created: '2019-05-07'
+    date_last_updated:
+    Kronos_version: '2.3.0'
+__GENERAL__:
+    docker: '__REQUIRED__'
+__SHARED__:
+    img_loc :
+    patch_loc:
+    anno_loc:
+__SAMPLES__:
+
+TASK_A:
+    reserved:
+        # do not change this section.
+        component_name: 'kronos_component_docker'
+        component_version: '0.00.1'
+        seed_version: '0.00.1'
+    run:
+        use_cluster: False
+        memory: '128G'
+        num_cpus: 1
+        forced_dependencies: []
+        add_breakpoint: False
+        env_vars:
+        boilerplate:
+        merge: True
+        requirements:
+            docker:
+        parallel_run: False
+        parallel_params: []
+        interval_file:
+    component:
+        input_files:
+            seed: 1
+            chunk_file_location: "/home/molinux01/cchen/ml/test_data_chunks.txt"
+            output_location: "/home/molinux01/cchen/ml/test_data_training_chunks.txt"
+            training_chunks: "0_1_2_3_4"
+            validation_chunks: "5"
+            testing_chunks: "6_7"
+            number_of_patches: "1000_1000_1000"
+            docker_image: "cchen/create_training_files"
+        output_files:
+        parameters:

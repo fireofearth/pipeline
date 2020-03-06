@@ -1,0 +1,53 @@
+__PIPELINE_INFO__: 
+    date_last_updated: 
+    name: 'Prepair Annotation and Image Data'
+    data_type: 
+    author: 'mnursey'
+    Kronos_version: '2.3.0'
+    host_cluster: 
+    version: '0.00.1'
+    input_type: 
+    date_created: '2019-05-07'
+    output_type: 
+__GENERAL__: 
+    docker: '/usr/bin/docker'
+__SHARED__: 
+    anno_loc: 
+    patch_loc: 
+    img_loc: 
+__SAMPLES__: 
+    # sample_id:
+    #    param1: value1
+    #    param2: value2
+
+    SET_0: 
+        anno_loc: '/home/aim1/Data/'
+        patch_loc: '/home/aim1/Data/given_data/eighty_annotations'
+        img_loc: '/home/aim1/Data/given_data/cancer'
+__TASK_1__: 
+    reserved: 
+        # do not change this section.
+        seed_version: '0.00.1'
+        component_version: '0.00.1'
+        component_name: 'AnnoAndImageToPatch'
+    run: 
+        interval_file: 
+        requirements: 
+            docker: 
+        boilerplate: 
+        use_cluster: False
+        num_cpus: 1
+        parallel_run: False
+        merge: True
+        add_breakpoint: False
+        memory: '5G'
+        forced_dependencies: []
+        env_vars: 
+        parallel_params: []
+    component: 
+        input_files: 
+            image_location: '/home/aim1/Data/given_data/cancer'
+            patch_location: '/home/aim1/Data/given_data/eighty_annotations'
+            annotation_location: '/home/aim1/Data/'
+        parameters: 
+        output_files: 

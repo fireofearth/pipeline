@@ -1,0 +1,2 @@
+#sample_id	task_a_config
+SET_0	/home/molinux01/mnursey/example_pipeline/downsample_config.json

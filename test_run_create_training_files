@@ -1,0 +1,3 @@
+#!/bin/bash
+
+kronos run -c $PWD/../ -i $PWD/input.txt -s $PWD/setup.txt -y test_run_create_training_files_setup.yaml --no_prefix 

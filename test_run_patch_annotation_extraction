@@ -1,0 +1,8 @@
+#!/bin/bash
+
+#	-i $PWD/input.txt \
+kronos run \
+	-c $PWD/../ \
+	-s $PWD/setup.txt \
+	-y test_run_patch_annotation_extraction_setup.yaml \
+	--no_prefix 
