@@ -20,7 +20,7 @@ __SAMPLES__:
 TASK_SORT_PATCHES_BY_LABEL:
     reserved:
         # do not change this section.
-        component_name: 'kronos_component_docker'
+        component_name: 'kronos_component_singularity'
         component_version: '0.00.1'
         seed_version: '0.00.1'
     run:
@@ -39,17 +39,25 @@ TASK_SORT_PATCHES_BY_LABEL:
         interval_file:
     component:
         input_files:
-            patch_location: "/home/molinux01/cchen/ml/test_data"
-            sorted_location: "/home/molinux01/cchen/ml/test_data_sorted"
-            labels_file_location: "/home/molinux01/cchen/ml/test_data_labels_file.txt"
-            docker_image: "cchen/sort_patches_by_label"
+            patch_location: "/projects/ovcare/classification/cchen/ml/test_data"
+            sorted_location: "/projects/ovcare/classification/cchen/ml/test_data_sorted"
+            labels_file_location: "/projects/ovcare/classification/cchen/ml/test_data_labels_file.txt"
+            singularity_image: "/home/cochen/cchen/ml/docker_sort_patches_by_label/sort_patches_by_label.simg"
+            slurm_job_name: "sort_patches_by_label_slurm"
+            slurm_num_cpu: 2
+            slurm_output: "/home/cochen/cchen/ml/slurm/sort_patches_by_label.%j.out"
+            slurm_error: "/home/cochen/cchen/ml/slurm/sort_patches_by_label.%j.err"
+            slurm_machine: "dlhost02"
+            slurm_queue: "dgxV100"
+            slurm_num_gpu: 1
+            slurm_max_time: "01:00:00"
         output_files:
         parameters:
 
 TASK_DIVIDE_WORK:
     reserved:
         # do not change this section.
-        component_name: 'kronos_component_docker'
+        component_name: 'kronos_component_singularity'
         component_version: '0.00.1'
         seed_version: '0.00.1'
     run:
@@ -68,17 +76,26 @@ TASK_DIVIDE_WORK:
         interval_file:
     component:
         input_files:
-            data_location: "/home/molinux01/cchen/ml/test_data_sorted"
-            work_location: "/home/molinux01/cchen/ml/work/sorted"
+            data_location: "/projects/ovcare/classification/cchen/ml/test_data_sorted"
+            work_location: "/projects/ovcare/classification/cchen/ml/work/sorted"
             N: 3
-            docker_image: "cchen/divide_work"
+            linker_location: "/projects/ovcare/classification/cchen"
+            singularity_image: "/projects/ovcare/classification/cchen/ml/docker_divide_work/divide_work.simg"
+            slurm_job_name: "divide_work_slurm"
+            slurm_num_cpu: 2
+            slurm_output: "/home/cochen/cchen/ml/slurm/divide_work.%j.out"
+            slurm_error: "/home/cochen/cchen/ml/slurm/divide_work.%j.err"
+            slurm_machine: "dlhost02"
+            slurm_queue: "dgxV100"
+            slurm_num_gpu: 2
+            slurm_max_time: "00:20:00"
         output_files:
         parameters:
 
 TASK_DOWNSAMPLE_DATA:
     reserved:
         # do not change this section.
-        component_name: 'kronos_component_docker'
+        component_name: 'kronos_component_singularity'
         component_version: '0.00.1'
         seed_version: '0.00.1'
     run:
@@ -97,15 +114,23 @@ TASK_DOWNSAMPLE_DATA:
         interval_file:
     component:
         input_files:
-            config_file_location: "/home/molinux01/cchen/ml/pipeline/downsample_data_config.json"
-            docker_image: "cchen/downsample_data"
+            config_file_location: "/projects/ovcare/classification/cchen/ml/pipeline/downsample_data_config.json"
+            singularity_image: "/home/cochen/cchen/ml/docker_downsample_data/downsample_data.simg"
+            slurm_job_name: "downsample_data_slurm"
+            slurm_num_cpu: 2
+            slurm_output: "/home/cochen/cchen/ml/slurm/downsample_data.%j.out"
+            slurm_error: "/home/cochen/cchen/ml/slurm/downsample_data.%j.err"
+            slurm_machine: "dlhost02"
+            slurm_queue: "dgxV100"
+            slurm_num_gpu: 2
+            slurm_max_time: "00:20:00"
         output_files:
         parameters:
 
 TASK_CREATE_GROUPS:
     reserved:
         # do not change this section.
-        component_name: 'kronos_component_docker'
+        component_name: 'kronos_component_singularity'
         component_version: '0.00.1'
         seed_version: '0.00.1'
     run:
@@ -124,15 +149,23 @@ TASK_CREATE_GROUPS:
         interval_file:
     component:
         input_files:
-            config_file_location: "/home/molinux01/cchen/ml/pipeline/create_groups_config.json"
-            docker_image: "cchen/create_groups"
+            config_file_location: "/projects/ovcare/classification/cchen/ml/pipeline/create_groups_config.json"
+            singularity_image: "/home/cochen/cchen/ml/docker_create_groups/create_groups.simg"
+            slurm_job_name: "create_groups_slurm"
+            slurm_num_cpu: 2
+            slurm_output: "/home/cochen/cchen/ml/slurm/create_groups.%j.out"
+            slurm_error: "/home/cochen/cchen/ml/slurm/create_groups.%j.err"
+            slurm_machine: "dlhost02"
+            slurm_queue: "dgxV100"
+            slurm_num_gpu: 2
+            slurm_max_time: "00:20:00"
         output_files:
         parameters:
 
 TASK_CREATE_TRAINING_FILES:
     reserved:
         # do not change this section.
-        component_name: 'kronos_component_docker'
+        component_name: 'kronos_component_singularity'
         component_version: '0.00.1'
         seed_version: '0.00.1'
     run:
@@ -152,12 +185,21 @@ TASK_CREATE_TRAINING_FILES:
     component:
         input_files:
             seed: 1
-            chunk_file_location: "/home/molinux01/cchen/ml/test_data_chunks.txt"
-            output_location: "/home/molinux01/cchen/ml/test_data_training_chunks.txt"
+            chunk_file_location: "/projects/ovcare/classification/cchen/ml/test_data_chunks.txt"
+            output_location: "/projects/ovcare/classification/cchen/ml/test_data_training_chunks.txt"
             training_chunks: "0_1_2_3_4"
             validation_chunks: "5"
             testing_chunks: "6_7"
             number_of_patches: "1000_1000_1000"
-            docker_image: "cchen/create_training_files"
+            linker_location: "/projects/ovcare/classification/cchen"
+            singularity_image: "/home/cochen/cchen/ml/docker_create_training_files/create_training_files.simg"
+            slurm_job_name: "create_training_files_slurm"
+            slurm_num_cpu: 2
+            slurm_output: "/home/cochen/cchen/ml/slurm/create_training_files.%j.out"
+            slurm_error: "/home/cochen/cchen/ml/slurm/create_training_files.%j.err"
+            slurm_machine: "dlhost02"
+            slurm_queue: "dgxV100"
+            slurm_num_gpu: 2
+            slurm_max_time: "00:20:00"
         output_files:
         parameters:

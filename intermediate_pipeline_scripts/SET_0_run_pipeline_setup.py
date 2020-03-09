@@ -36,46 +36,46 @@ job_rcs = Queue()
 #================================================================================
 #import components
 #--------------------------------------------------------------------------------
-from kronos_component_docker import component_main as kronos_component_docker_main
+from kronos_component_singularity import component_main as kronos_component_singularity_main
 
 #================================================================================
 #generating tasks
 #--------------------------------------------------------------------------------
-TASK_SORT_PATCHES_BY_LABEL_component = kronos_component_docker_main.Component('kronos_component_docker', component_parent_dir=args.components_dir)
+TASK_SORT_PATCHES_BY_LABEL_component = kronos_component_singularity_main.Component('kronos_component_singularity', component_parent_dir=args.components_dir)
 TASK_SORT_PATCHES_BY_LABEL_task = Task('TASK_SORT_PATCHES_BY_LABEL', TASK_SORT_PATCHES_BY_LABEL_component)
-TASK_SORT_PATCHES_BY_LABEL_task.update_comp_args(__pipeline__patch_location='/home/molinux01/cchen/ml/test_data', __pipeline__parameters=None, __pipeline__sorted_location='/home/molinux01/cchen/ml/test_data_sorted', __pipeline__labels_file_location='/home/molinux01/cchen/ml/test_data_labels_file.txt', __pipeline__docker_image='cchen/sort_patches_by_label', __pipeline__output_files=None, )
+TASK_SORT_PATCHES_BY_LABEL_task.update_comp_args(__pipeline__patch_location='/projects/ovcare/classification/cchen/ml/test_data', __pipeline__slurm_max_time='01:00:00', __pipeline__slurm_error='/home/cochen/cchen/ml/slurm/sort_patches_by_label.%j.err', __pipeline__slurm_machine='dlhost02', __pipeline__slurm_job_name='sort_patches_by_label_slurm', __pipeline__sorted_location='/projects/ovcare/classification/cchen/ml/test_data_sorted', __pipeline__slurm_num_cpu=2, __pipeline__slurm_num_gpu=1, __pipeline__slurm_output='/home/cochen/cchen/ml/slurm/sort_patches_by_label.%j.out', __pipeline__labels_file_location='/projects/ovcare/classification/cchen/ml/test_data_labels_file.txt', __pipeline__singularity_image='/home/cochen/cchen/ml/docker_sort_patches_by_label/sort_patches_by_label.simg', __pipeline__parameters=None, __pipeline__slurm_queue='dgxV100', __pipeline__output_files=None, )
 TASK_SORT_PATCHES_BY_LABEL_prefix = rm.get_filename_prefix('TASK_SORT_PATCHES_BY_LABEL')
 TASK_SORT_PATCHES_BY_LABEL_task.update_comp_output_filenames(TASK_SORT_PATCHES_BY_LABEL_prefix, rm.outputs_dir, args.no_prefix)
 TASK_SORT_PATCHES_BY_LABEL_task.update_comp_env_vars({})
 TASK_SORT_PATCHES_BY_LABEL_task.update_comp_reqs({'docker': 'docker'})
 
-TASK_DIVIDE_WORK_component = kronos_component_docker_main.Component('kronos_component_docker', component_parent_dir=args.components_dir)
+TASK_DIVIDE_WORK_component = kronos_component_singularity_main.Component('kronos_component_singularity', component_parent_dir=args.components_dir)
 TASK_DIVIDE_WORK_task = Task('TASK_DIVIDE_WORK', TASK_DIVIDE_WORK_component)
-TASK_DIVIDE_WORK_task.update_comp_args(__pipeline__work_location='/home/molinux01/cchen/ml/work/sorted', __pipeline__parameters=None, __pipeline__N=3, __pipeline__output_files=None, __pipeline__docker_image='cchen/divide_work', __pipeline__data_location='/home/molinux01/cchen/ml/test_data_sorted', )
+TASK_DIVIDE_WORK_task.update_comp_args(__pipeline__work_location='/projects/ovcare/classification/cchen/ml/work/sorted', __pipeline__slurm_max_time='00:20:00', __pipeline__slurm_error='/home/cochen/cchen/ml/slurm/divide_work.%j.err', __pipeline__slurm_machine='dlhost02', __pipeline__data_location='/projects/ovcare/classification/cchen/ml/test_data_sorted', __pipeline__N=3, __pipeline__linker_location='/projects/ovcare/classification/cchen', __pipeline__slurm_job_name='divide_work_slurm', __pipeline__slurm_num_cpu=2, __pipeline__slurm_num_gpu=2, __pipeline__slurm_output='/home/cochen/cchen/ml/slurm/divide_work.%j.out', __pipeline__singularity_image='/projects/ovcare/classification/cchen/ml/docker_divide_work/divide_work.simg', __pipeline__parameters=None, __pipeline__slurm_queue='dgxV100', __pipeline__output_files=None, )
 TASK_DIVIDE_WORK_prefix = rm.get_filename_prefix('TASK_DIVIDE_WORK')
 TASK_DIVIDE_WORK_task.update_comp_output_filenames(TASK_DIVIDE_WORK_prefix, rm.outputs_dir, args.no_prefix)
 TASK_DIVIDE_WORK_task.update_comp_env_vars({})
 TASK_DIVIDE_WORK_task.update_comp_reqs({'docker': 'docker'})
 
-TASK_DOWNSAMPLE_DATA_component = kronos_component_docker_main.Component('kronos_component_docker', component_parent_dir=args.components_dir)
+TASK_DOWNSAMPLE_DATA_component = kronos_component_singularity_main.Component('kronos_component_singularity', component_parent_dir=args.components_dir)
 TASK_DOWNSAMPLE_DATA_task = Task('TASK_DOWNSAMPLE_DATA', TASK_DOWNSAMPLE_DATA_component)
-TASK_DOWNSAMPLE_DATA_task.update_comp_args(__pipeline__config_file_location='/home/molinux01/cchen/ml/pipeline/downsample_data_config.json', __pipeline__docker_image='cchen/downsample_data', __pipeline__parameters=None, __pipeline__output_files=None, )
+TASK_DOWNSAMPLE_DATA_task.update_comp_args(__pipeline__config_file_location='/projects/ovcare/classification/cchen/ml/pipeline/downsample_data_config.json', __pipeline__slurm_max_time='00:20:00', __pipeline__slurm_error='/home/cochen/cchen/ml/slurm/downsample_data.%j.err', __pipeline__slurm_machine='dlhost02', __pipeline__slurm_job_name='downsample_data_slurm', __pipeline__slurm_num_cpu=2, __pipeline__slurm_num_gpu=2, __pipeline__slurm_output='/home/cochen/cchen/ml/slurm/downsample_data.%j.out', __pipeline__singularity_image='/home/cochen/cchen/ml/docker_downsample_data/downsample_data.simg', __pipeline__parameters=None, __pipeline__slurm_queue='dgxV100', __pipeline__output_files=None, )
 TASK_DOWNSAMPLE_DATA_prefix = rm.get_filename_prefix('TASK_DOWNSAMPLE_DATA')
 TASK_DOWNSAMPLE_DATA_task.update_comp_output_filenames(TASK_DOWNSAMPLE_DATA_prefix, rm.outputs_dir, args.no_prefix)
 TASK_DOWNSAMPLE_DATA_task.update_comp_env_vars({})
 TASK_DOWNSAMPLE_DATA_task.update_comp_reqs({'docker': 'docker'})
 
-TASK_CREATE_GROUPS_component = kronos_component_docker_main.Component('kronos_component_docker', component_parent_dir=args.components_dir)
+TASK_CREATE_GROUPS_component = kronos_component_singularity_main.Component('kronos_component_singularity', component_parent_dir=args.components_dir)
 TASK_CREATE_GROUPS_task = Task('TASK_CREATE_GROUPS', TASK_CREATE_GROUPS_component)
-TASK_CREATE_GROUPS_task.update_comp_args(__pipeline__config_file_location='/home/molinux01/cchen/ml/pipeline/create_groups_config.json', __pipeline__docker_image='cchen/create_groups', __pipeline__parameters=None, __pipeline__output_files=None, )
+TASK_CREATE_GROUPS_task.update_comp_args(__pipeline__config_file_location='/projects/ovcare/classification/cchen/ml/pipeline/create_groups_config.json', __pipeline__slurm_max_time='00:20:00', __pipeline__slurm_error='/home/cochen/cchen/ml/slurm/create_groups.%j.err', __pipeline__slurm_machine='dlhost02', __pipeline__slurm_job_name='create_groups_slurm', __pipeline__slurm_num_cpu=2, __pipeline__slurm_num_gpu=2, __pipeline__slurm_output='/home/cochen/cchen/ml/slurm/create_groups.%j.out', __pipeline__singularity_image='/home/cochen/cchen/ml/docker_create_groups/create_groups.simg', __pipeline__parameters=None, __pipeline__slurm_queue='dgxV100', __pipeline__output_files=None, )
 TASK_CREATE_GROUPS_prefix = rm.get_filename_prefix('TASK_CREATE_GROUPS')
 TASK_CREATE_GROUPS_task.update_comp_output_filenames(TASK_CREATE_GROUPS_prefix, rm.outputs_dir, args.no_prefix)
 TASK_CREATE_GROUPS_task.update_comp_env_vars({})
 TASK_CREATE_GROUPS_task.update_comp_reqs({'docker': 'docker'})
 
-TASK_CREATE_TRAINING_FILES_component = kronos_component_docker_main.Component('kronos_component_docker', component_parent_dir=args.components_dir)
+TASK_CREATE_TRAINING_FILES_component = kronos_component_singularity_main.Component('kronos_component_singularity', component_parent_dir=args.components_dir)
 TASK_CREATE_TRAINING_FILES_task = Task('TASK_CREATE_TRAINING_FILES', TASK_CREATE_TRAINING_FILES_component)
-TASK_CREATE_TRAINING_FILES_task.update_comp_args(__pipeline__number_of_patches='1000_1000_1000', __pipeline__testing_chunks='6_7', __pipeline__parameters=None, __pipeline__chunk_file_location='/home/molinux01/cchen/ml/test_data_chunks.txt', __pipeline__training_chunks='0_1_2_3_4', __pipeline__output_location='/home/molinux01/cchen/ml/test_data_training_chunks.txt', __pipeline__seed=1, __pipeline__validation_chunks='5', __pipeline__docker_image='cchen/create_training_files', __pipeline__output_files=None, )
+TASK_CREATE_TRAINING_FILES_task.update_comp_args(__pipeline__number_of_patches='1000_1000_1000', __pipeline__validation_chunks='5', __pipeline__slurm_max_time='00:20:00', __pipeline__slurm_error='/home/cochen/cchen/ml/slurm/create_training_files.%j.err', __pipeline__slurm_machine='dlhost02', __pipeline__chunk_file_location='/projects/ovcare/classification/cchen/ml/test_data_chunks.txt', __pipeline__training_chunks='0_1_2_3_4', __pipeline__slurm_job_name='create_training_files_slurm', __pipeline__output_location='/projects/ovcare/classification/cchen/ml/test_data_training_chunks.txt', __pipeline__slurm_num_cpu=2, __pipeline__seed=1, __pipeline__parameters=None, __pipeline__slurm_num_gpu=2, __pipeline__slurm_output='/home/cochen/cchen/ml/slurm/create_training_files.%j.out', __pipeline__singularity_image='/home/cochen/cchen/ml/docker_create_training_files/create_training_files.simg', __pipeline__testing_chunks='6_7', __pipeline__slurm_queue='dgxV100', __pipeline__output_files=None, )
 TASK_CREATE_TRAINING_FILES_prefix = rm.get_filename_prefix('TASK_CREATE_TRAINING_FILES')
 TASK_CREATE_TRAINING_FILES_task.update_comp_output_filenames(TASK_CREATE_TRAINING_FILES_prefix, rm.outputs_dir, args.no_prefix)
 TASK_CREATE_TRAINING_FILES_task.update_comp_env_vars({})
@@ -89,7 +89,7 @@ TASK_CREATE_TRAINING_FILES_task.update_comp_reqs({'docker': 'docker'})
 @ruffus.check_if_uptodate(rm.sentinel_file_exists)
 @LogWarnErr(l)
 @LogInfo(l)
-def kronos_component_docker_TASK_SORT_PATCHES_BY_LABEL_function(*inargs):
+def kronos_component_singularity_TASK_SORT_PATCHES_BY_LABEL_function(*inargs):
     component_name, task_name, _ = inargs
     print '%s for %s started in %s pipeline' % (task_name, component_name, args.pipeline_name)
     run_script = rm.generate_script(TASK_SORT_PATCHES_BY_LABEL_task, None, None)
@@ -106,12 +106,12 @@ def kronos_component_docker_TASK_SORT_PATCHES_BY_LABEL_function(*inargs):
         job_rcs.put(98)
         traceback.print_exc()
 
-@ruffus.follows(*[kronos_component_docker_TASK_SORT_PATCHES_BY_LABEL_function])
+@ruffus.follows(*[kronos_component_singularity_TASK_SORT_PATCHES_BY_LABEL_function])
 @ruffus.parallel(TASK_DIVIDE_WORK_component.component_name, 'TASK_DIVIDE_WORK', ['TASK_SORT_PATCHES_BY_LABEL'])
 @ruffus.check_if_uptodate(rm.sentinel_file_exists)
 @LogWarnErr(l)
 @LogInfo(l)
-def kronos_component_docker_TASK_DIVIDE_WORK_function(*inargs):
+def kronos_component_singularity_TASK_DIVIDE_WORK_function(*inargs):
     component_name, task_name, _ = inargs
     print '%s for %s started in %s pipeline' % (task_name, component_name, args.pipeline_name)
     run_script = rm.generate_script(TASK_DIVIDE_WORK_task, None, None)
@@ -128,12 +128,12 @@ def kronos_component_docker_TASK_DIVIDE_WORK_function(*inargs):
         job_rcs.put(98)
         traceback.print_exc()
 
-@ruffus.follows(*[kronos_component_docker_TASK_DIVIDE_WORK_function])
+@ruffus.follows(*[kronos_component_singularity_TASK_DIVIDE_WORK_function])
 @ruffus.parallel(TASK_DOWNSAMPLE_DATA_component.component_name, 'TASK_DOWNSAMPLE_DATA', ['TASK_DIVIDE_WORK'])
 @ruffus.check_if_uptodate(rm.sentinel_file_exists)
 @LogWarnErr(l)
 @LogInfo(l)
-def kronos_component_docker_TASK_DOWNSAMPLE_DATA_function(*inargs):
+def kronos_component_singularity_TASK_DOWNSAMPLE_DATA_function(*inargs):
     component_name, task_name, _ = inargs
     print '%s for %s started in %s pipeline' % (task_name, component_name, args.pipeline_name)
     run_script = rm.generate_script(TASK_DOWNSAMPLE_DATA_task, None, None)
@@ -150,12 +150,12 @@ def kronos_component_docker_TASK_DOWNSAMPLE_DATA_function(*inargs):
         job_rcs.put(98)
         traceback.print_exc()
 
-@ruffus.follows(*[kronos_component_docker_TASK_DOWNSAMPLE_DATA_function])
+@ruffus.follows(*[kronos_component_singularity_TASK_DOWNSAMPLE_DATA_function])
 @ruffus.parallel(TASK_CREATE_GROUPS_component.component_name, 'TASK_CREATE_GROUPS', ['TASK_DOWNSAMPLE_DATA'])
 @ruffus.check_if_uptodate(rm.sentinel_file_exists)
 @LogWarnErr(l)
 @LogInfo(l)
-def kronos_component_docker_TASK_CREATE_GROUPS_function(*inargs):
+def kronos_component_singularity_TASK_CREATE_GROUPS_function(*inargs):
     component_name, task_name, _ = inargs
     print '%s for %s started in %s pipeline' % (task_name, component_name, args.pipeline_name)
     run_script = rm.generate_script(TASK_CREATE_GROUPS_task, None, None)
@@ -172,12 +172,12 @@ def kronos_component_docker_TASK_CREATE_GROUPS_function(*inargs):
         job_rcs.put(98)
         traceback.print_exc()
 
-@ruffus.follows(*[kronos_component_docker_TASK_CREATE_GROUPS_function])
+@ruffus.follows(*[kronos_component_singularity_TASK_CREATE_GROUPS_function])
 @ruffus.parallel(TASK_CREATE_TRAINING_FILES_component.component_name, 'TASK_CREATE_TRAINING_FILES', ['TASK_CREATE_GROUPS'])
 @ruffus.check_if_uptodate(rm.sentinel_file_exists)
 @LogWarnErr(l)
 @LogInfo(l)
-def kronos_component_docker_TASK_CREATE_TRAINING_FILES_function(*inargs):
+def kronos_component_singularity_TASK_CREATE_TRAINING_FILES_function(*inargs):
     component_name, task_name, _ = inargs
     print '%s for %s started in %s pipeline' % (task_name, component_name, args.pipeline_name)
     run_script = rm.generate_script(TASK_CREATE_TRAINING_FILES_task, None, None)
@@ -194,7 +194,7 @@ def kronos_component_docker_TASK_CREATE_TRAINING_FILES_function(*inargs):
         job_rcs.put(98)
         traceback.print_exc()
 
-@ruffus.follows(*[kronos_component_docker_TASK_CREATE_TRAINING_FILES_function, ])
+@ruffus.follows(*[kronos_component_singularity_TASK_CREATE_TRAINING_FILES_function, ])
 def __last_task___function():
     pass
 

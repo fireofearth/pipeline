@@ -20,7 +20,7 @@ __SAMPLES__:
 TASK_A:
     reserved:
         # do not change this section.
-        component_name: 'kronos_component_docker'
+        component_name: 'kronos_component_singularity'
         component_version: '0.00.1'
         seed_version: '0.00.1'
     run:
@@ -39,7 +39,15 @@ TASK_A:
         interval_file:
     component:
         input_files:
-            config_file_location: "/home/molinux01/cchen/ml/pipeline/create_groups_config.json"
-            docker_image: "cchen/create_groups"
+            config_file_location: "/home/cochen/cchen/ml/pipeline/create_groups_config.json"
+            singularity_image: "/home/cochen/cchen/ml/docker_create_groups/create_groups.simg"
+            slurm_job_name: "create_groups_slurm"
+            slurm_num_cpu: 2
+            slurm_output: "/home/cochen/cchen/ml/slurm/create_groups.%j.out"
+            slurm_error: "/home/cochen/cchen/ml/slurm/create_groups.%j.err"
+            slurm_machine: "dlhost02"
+            slurm_queue: "dgxV100"
+            slurm_num_gpu: 2
+            slurm_max_time: "00:20:00"
         output_files:
         parameters:

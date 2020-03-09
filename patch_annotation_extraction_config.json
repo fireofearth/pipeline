@@ -1,6 +1,6 @@
 {
-	"image_location": "/home/molinux01/cchen/ml/test_slides",
-	"annotation_location": "/home/molinux01/cchen/ml/annotations",
-	"extracted_patch_location": "/home/molinux01/cchen/ml/test_data_extracted",
+	"image_location": "/projects/ovcare/classification/cchen/ml/test_slides",
+	"annotation_location": "/projects/ovcare/classification/cchen/ml/annotations",
+	"extracted_patch_location": "/projects/ovcare/classification/cchen/ml/test_data_extracted",
 	"patch_extraction_size": 1024
 }

@@ -1,9 +1,10 @@
 {
 	"seed": 1,
 	"number_of_groups": 8,
-	"sorted_location": "/home/molinux01/cchen/ml/test_data_sorted_downsampled",
-	"output_location": "/home/molinux01/cchen/ml/test_data_chunks.txt",
+	"sorted_location": "/projects/ovcare/classification/cchen/ml/test_data_sorted_downsampled",
+	"output_location": "/projects/ovcare/classification/cchen/ml/test_data_chunks.txt",
 	"min_patches": 1,
 	"target_num_patches": 1000,
-	"full_mix": true
+	"full_mix": true,
+	"linker_location": "/projects/ovcare/classification/cchen/ml"
 }

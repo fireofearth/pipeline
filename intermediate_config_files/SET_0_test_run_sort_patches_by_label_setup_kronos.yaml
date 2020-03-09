@@ -27,7 +27,7 @@ TASK_A:
         # do not change this section.
         seed_version: '0.00.1'
         component_version: '0.00.1'
-        component_name: 'kronos_component_docker'
+        component_name: 'kronos_component_singularity'
     run: 
         interval_file: 
         requirements: 
@@ -44,9 +44,17 @@ TASK_A:
         parallel_params: []
     component: 
         input_files: 
-            sorted_location: '/home/molinux01/cchen/ml/test_data_sorted'
-            labels_file_location: '/home/molinux01/cchen/ml/test_data_labels_file.txt'
-            patch_location: '/home/molinux01/cchen/ml/test_data'
-            docker_image: 'cchen/sort_patches_by_label'
+            patch_location: '/projects/ovcare/classification/cchen/ml/test_data'
+            slurm_max_time: '00:20:00'
+            slurm_error: '/home/cochen/cchen/ml/slurm/sort_patches_by_label.%j.err'
+            slurm_machine: 'dlhost02'
+            slurm_job_name: 'sort_patches_by_label_slurm'
+            sorted_location: '/projects/ovcare/classification/cchen/ml/test_data_sorted'
+            slurm_num_cpu: 2
+            slurm_num_gpu: 2
+            slurm_output: '/home/cochen/cchen/ml/slurm/sort_patches_by_label.%j.out'
+            labels_file_location: '/projects/ovcare/classification/cchen/ml/test_data_labels_file.txt'
+            singularity_image: '/home/cochen/cchen/ml/docker_sort_patches_by_label/sort_patches_by_label.simg'
+            slurm_queue: 'dgxV100'
         parameters: 
         output_files: 

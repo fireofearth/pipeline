@@ -36,14 +36,14 @@ job_rcs = Queue()
 #================================================================================
 #import components
 #--------------------------------------------------------------------------------
-from kronos_component_docker import component_main as kronos_component_docker_main
+from kronos_component_singularity import component_main as kronos_component_singularity_main
 
 #================================================================================
 #generating tasks
 #--------------------------------------------------------------------------------
-TASK_A_component = kronos_component_docker_main.Component('kronos_component_docker', component_parent_dir=args.components_dir)
+TASK_A_component = kronos_component_singularity_main.Component('kronos_component_singularity', component_parent_dir=args.components_dir)
 TASK_A_task = Task('TASK_A', TASK_A_component)
-TASK_A_task.update_comp_args(__pipeline__patch_location='/home/molinux01/cchen/ml/test_data', __pipeline__parameters=None, __pipeline__sorted_location='/home/molinux01/cchen/ml/test_data_sorted', __pipeline__labels_file_location='/home/molinux01/cchen/ml/test_data_labels_file.txt', __pipeline__docker_image='cchen/sort_patches_by_label', __pipeline__output_files=None, )
+TASK_A_task.update_comp_args(__pipeline__patch_location='/projects/ovcare/classification/cchen/ml/test_data', __pipeline__slurm_max_time='00:20:00', __pipeline__slurm_error='/home/cochen/cchen/ml/slurm/sort_patches_by_label.%j.err', __pipeline__slurm_machine='dlhost02', __pipeline__slurm_job_name='sort_patches_by_label_slurm', __pipeline__sorted_location='/projects/ovcare/classification/cchen/ml/test_data_sorted', __pipeline__slurm_num_cpu=2, __pipeline__slurm_num_gpu=2, __pipeline__slurm_output='/home/cochen/cchen/ml/slurm/sort_patches_by_label.%j.out', __pipeline__labels_file_location='/projects/ovcare/classification/cchen/ml/test_data_labels_file.txt', __pipeline__singularity_image='/home/cochen/cchen/ml/docker_sort_patches_by_label/sort_patches_by_label.simg', __pipeline__parameters=None, __pipeline__slurm_queue='dgxV100', __pipeline__output_files=None, )
 TASK_A_prefix = rm.get_filename_prefix('TASK_A')
 TASK_A_task.update_comp_output_filenames(TASK_A_prefix, rm.outputs_dir, args.no_prefix)
 TASK_A_task.update_comp_env_vars({})
@@ -57,7 +57,7 @@ TASK_A_task.update_comp_reqs({'docker': 'docker'})
 @ruffus.check_if_uptodate(rm.sentinel_file_exists)
 @LogWarnErr(l)
 @LogInfo(l)
-def kronos_component_docker_TASK_A_function(*inargs):
+def kronos_component_singularity_TASK_A_function(*inargs):
     component_name, task_name, _ = inargs
     print '%s for %s started in %s pipeline' % (task_name, component_name, args.pipeline_name)
     run_script = rm.generate_script(TASK_A_task, None, None)
@@ -74,7 +74,7 @@ def kronos_component_docker_TASK_A_function(*inargs):
         job_rcs.put(98)
         traceback.print_exc()
 
-@ruffus.follows(*[kronos_component_docker_TASK_A_function, ])
+@ruffus.follows(*[kronos_component_singularity_TASK_A_function, ])
 def __last_task___function():
     pass
 

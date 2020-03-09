@@ -1,6 +1,6 @@
 {
-	"work_file_location" : "/home/molinux01/cchen/ml/work/sorted",
-	"patch_location" : "/home/molinux01/cchen/ml/test_data_sorted",
-	"downsampled_location" : "/home/molinux01/cchen/ml/test_data_sorted_downsampled",
+	"work_file_location" : "/projects/ovcare/classification/cchen/ml/work/sorted",
+	"patch_location" : "/projects/ovcare/classification/cchen/ml/test_data_sorted",
+	"downsampled_location" : "/projects/ovcare/classification/cchen/ml/test_data_sorted_downsampled",
 	"downsample_size" : 256
 }
