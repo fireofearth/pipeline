@@ -1,11 +1,11 @@
 {
 	"test_name": "my_test",
-	"log_folder_location": "/home/molinux01/cchen/ml/logs/test",
+	"log_folder_location": "/projects/ovcare/classification/cchen/ml/logs/test",
 	"gpu_to_use": 0,
-	"chunk_file_location": "/home/molinux01/cchen/ml/test_data_training_chunks.txt",
+	"chunk_file_location": "/projects/ovcare/classification/cchen/ml/test_data_training_chunks.txt",
 	"training_chunks": "0",
 	"validation_chunks": "1",
-	"model_save_location": "/home/molinux01/cchen/ml/models",
+	"model_save_location": "/projects/ovcare/classification/cchen/ml/models",
 	"patch_workers": 10,
 	"training_shuffle": true,
 	"validation_shuffle": true,
@@ -16,9 +16,9 @@
 	"batch_size": 8,
 	"test_chunks": "2",
 	"test_shuffle": true,
-	"test_log_folder_location": "/home/molinux01/cchen/ml/logs/eval",
-	"test_results_location": "/home/molinux01/cchen/ml/results",
-	"sorted_location": "/home/molinux01/cchen/ml/test_data_sorted_downsampled",
+	"test_log_folder_location": "/projects/ovcare/classification/cchen/ml/logs/eval",
+	"test_results_location": "/projects/ovcare/classification/cchen/ml/results",
+	"sorted_location": "/projects/ovcare/classification/cchen/ml/test_data_downsampled_sorted",
   	"path_value_to_index" : {
 		"CC" : 0,
 		"EC" : 1,
@@ -26,20 +26,20 @@
 		"LGSC" : 3,
 		"MC" : 4
 	},
-      "model_config" : {
-          "num_subtypes" : 5,
-          "deep_model" : "resnet18",
-          "use_weighted_loss" : false,
-          "continue_train" : false,
-          "parameters" : {
-              "pretrained" : true
-          },
-          "optimizer" : {
-              "type" : "Adam",
-              "parameters" : {
-                  "lr" : 0.001,
-                  "amsgrad" : true
-              }
-          }
-      }
+    "model_config" : {
+        "num_subtypes" : 5,
+        "deep_model" : "resnet18",
+        "use_weighted_loss" : false,
+        "continue_train" : false,
+        "parameters" : {
+            "pretrained" : true
+        },
+        "optimizer" : {
+            "type" : "Adam",
+            "parameters" : {
+                "lr" : 0.001,
+                "amsgrad" : true
+            }
+        }
+    }
 }
