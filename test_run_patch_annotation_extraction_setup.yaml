@@ -40,6 +40,14 @@ TASK_A:
     component:
         input_files:
             config_file_location: "/home/molinux01/cchen/ml/starter_pipeline/patch_annotation_extraction_config.json"
-            docker_image: "cchen/patch_annotation_extraction"
+            singularity_image: "/home/cochen/cchen/ml/docker_patch_annotation_extraction/patch_annotation_extraction_latest.sif"
+            slurm_job_name: "patch_annotation_extraction_slurm"
+            slurm_num_cpu: 2
+            slurm_output: "/home/cochen/cchen/ml/slurm/benchmark-pytorch.%j.out"
+            slurm_error: "/home/cochen/cchen/ml/slurm/benchmark-pytorch.%j.err"
+            slurm_machine: "dlhost02"
+            slurm_queue: "dgxV100"
+            slurm_num_gpu: 1
+            slurm_max_time: "00:20:00"
         output_files:
         parameters:

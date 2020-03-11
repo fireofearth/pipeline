@@ -50,5 +50,6 @@ TASK_A:
             slurm_num_gpu: 1
             slurm_max_time: "00:20:00"
             singularity_args: "--nv"
+            slurm_memory: "100G"
         output_files:
         parameters:
