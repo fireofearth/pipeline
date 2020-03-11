@@ -19,7 +19,6 @@ __SAMPLES__:
 
 TASK_A:
     reserved:
-        # do not change this section.
         component_name: 'kronos_component_singularity'
         component_version: '0.00.1'
         seed_version: '0.00.1'

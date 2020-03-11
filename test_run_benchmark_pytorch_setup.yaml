@@ -38,7 +38,7 @@ TASK_A:
         interval_file:
     component:
         input_files:
-            config_file_location: "/home/molinux01/cchen/ml/pipeline/benchmark_pytorch_config.json"
+            config_file_location: "/projects/ovcare/classification/cchen/ml/pipeline/benchmark_pytorch_config.json"
             linker_location: "/projects/ovcare/classification/cchen/ml"
             singularity_image: "/home/cochen/cchen/ml/docker_benchmark_pytorch/benchmark-pytorch_latest.sif"
             slurm_job_name: "benchmark-pytorch_slurm"
