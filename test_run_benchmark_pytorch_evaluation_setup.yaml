@@ -41,7 +41,7 @@ TASK_A:
         input_files:
             log_file_location: "/projects/ovcare/classification/cchen/ml/logs/test/log_my_test_20200311-220320.txt"
             linker_location: "/projects/ovcare/classification/cchen/ml"
-            singularity_image: "/home/cochen/cchen/ml/docker_benchmark_pytorch_evaluation/benchmark-pytorch-evaluation_latest.sif"
+            singularity_image: "/home/cochen/cchen/ml/docker_benchmark_pytorch_evaluation/benchmark_pytorch_evaluation_latest.sif"
             slurm_job_name: "benchmark_pytorch_evaluation_slurm"
             slurm_num_cpu: 2
             slurm_output: "/home/cochen/cchen/ml/slurm/benchmark_pytorch_evaluation.%j.out"

@@ -10,7 +10,7 @@ __PIPELINE_INFO__:
     date_created: '2019-05-07'
     output_type: 
 __GENERAL__: 
-    docker: 'docker'
+    docker: '__REQUIRED__'
 __SHARED__: 
     anno_loc: 
     patch_loc: 
@@ -21,6 +21,11 @@ __SAMPLES__:
     #    param2: value2
 
 TASK_A: 
+    reserved: 
+        # do not change this section.
+        seed_version: '0.00.1'
+        component_version: '0.00.1'
+        component_name: 'kronos_component_singularity'
     run: 
         interval_file: 
         requirements: 
@@ -35,16 +40,20 @@ TASK_A:
         forced_dependencies: []
         env_vars: 
         parallel_params: []
-    reserved: 
-        # do not change this section.
-        seed_version: '0.00.1'
-        component_version: '0.00.1'
-        component_name: 'kronos_component_docker'
     component: 
         input_files: 
-            log_file_location: '/home/molinux01/cchen/ml/logs/test/log_my_test_20200305-193527.txt'
-            docker_args: '--runtime=nvidia --shm-size 8G'
-            config_file_location: '/home/molinux01/cchen/ml/pipeline/benchmark_pytorch_config.json'
-            docker_image: 'cchen/benchmark_pytorch_evaluation'
+            slurm_max_time: '00:20:00'
+            slurm_error: '/home/cochen/cchen/ml/slurm/benchmark_pytorch_evaluation.%j.err'
+            slurm_machine: 'dlhost02'
+            linker_location: '/projects/ovcare/classification/cchen/ml'
+            slurm_job_name: 'benchmark_pytorch_evaluation_slurm'
+            slurm_num_cpu: 2
+            singularity_args: '--nv'
+            slurm_num_gpu: 1
+            slurm_output: '/home/cochen/cchen/ml/slurm/benchmark_pytorch_evaluation.%j.out'
+            slurm_memory: '100G'
+            singularity_image: '/home/cochen/cchen/ml/docker_benchmark_pytorch_evaluation/benchmark-pytorch-evaluation_latest.sif'
+            slurm_queue: 'dgxV100'
+            log_file_location: '/projects/ovcare/classification/cchen/ml/logs/test/log_my_test_20200311-220320.txt'
         parameters: 
         output_files: 

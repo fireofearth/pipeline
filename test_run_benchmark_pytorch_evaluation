@@ -13,7 +13,5 @@ source /projects/ovcare/classification/cchen/py2
 
 kronos run \
 	-c $PWD/../ \
-    -i $PWD/input.txt \
-	-s $PWD/setup.txt \
 	-y test_run_benchmark_pytorch_evaluation_setup.yaml \
 	--no_prefix 
