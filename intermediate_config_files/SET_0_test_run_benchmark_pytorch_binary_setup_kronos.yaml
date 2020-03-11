@@ -27,7 +27,7 @@ TASK_A:
         # do not change this section.
         seed_version: '0.00.1'
         component_version: '0.00.1'
-        component_name: 'kronos_component_docker'
+        component_name: 'kronos_component_singularity'
     run: 
         interval_file: 
         requirements: 
@@ -44,8 +44,17 @@ TASK_A:
         parallel_params: []
     component: 
         input_files: 
-            docker_args: '--runtime=nvidia --shm-size 8G'
-            config_file_location: '/home/molinux01/cchen/ml/pipeline/benchmark_pytorch_binary_config.json'
-            docker_image: 'cchen/benchmark_pytorch'
+            slurm_max_time: '00:20:00'
+            slurm_error: '/home/cochen/cchen/ml/slurm/benchmark_pytorch_binary.%j.err'
+            slurm_machine: 'dlhost02'
+            linker_location: '/projects/ovcare/classification/cchen/ml'
+            slurm_job_name: 'benchmark-pytorch_slurm'
+            slurm_num_cpu: 2
+            singularity_args: '--nv'
+            slurm_num_gpu: 1
+            slurm_output: '/home/cochen/cchen/ml/slurm/benchmark_pytorch_binary.%j.out'
+            singularity_image: '/home/cochen/cchen/ml/docker_benchmark_pytorch/benchmark-pytorch_latest.sif'
+            config_file_location: '/projects/ovcare/classification/cchen/ml/pipeline/benchmark_pytorch_binary_config.json'
+            slurm_queue: 'dgxV100'
         parameters: 
         output_files: 
