@@ -40,6 +40,7 @@ TASK_A:
     component:
         input_files:
             config_file_location: "/projects/ovcare/classification/cchen/ml/pipeline/extract_endometrial_patches_config.json"
+            linker_location: "/projects/ovcare/WSI"
             singularity_image: "/home/cochen/cchen/ml/docker_patch_annotation_extraction/patch_annotation_extraction_latest.sif"
             slurm_job_name: "patch_annotation_extraction_slurm"
             slurm_num_cpu: 2
@@ -48,7 +49,7 @@ TASK_A:
             slurm_machine: "dlhost02"
             slurm_queue: "dgxV100"
             slurm_num_gpu: 1
-            slurm_max_time: "00:20:00"
+            slurm_max_time: "10:00:00"
             slurm_memory: "100G"
         output_files:
         parameters:

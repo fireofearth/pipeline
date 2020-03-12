@@ -42,18 +42,17 @@ TASK_A:
         parallel_params: []
     component: 
         input_files: 
-            slurm_max_time: '00:20:00'
-            slurm_error: '/home/cochen/cchen/ml/slurm/benchmark_pytorch_evaluation.%j.err'
+            slurm_max_time: '10:00:00'
+            slurm_error: '/home/cochen/cchen/ml/slurm/patch_annotation_extraction.%j.err'
             slurm_machine: 'dlhost02'
-            linker_location: '/projects/ovcare/classification/cchen/ml'
-            slurm_job_name: 'benchmark_pytorch_evaluation_slurm'
+            linker_location: '/projects/ovcare/WSI'
+            slurm_job_name: 'patch_annotation_extraction_slurm'
             slurm_num_cpu: 2
-            singularity_args: '--nv'
             slurm_num_gpu: 1
-            slurm_output: '/home/cochen/cchen/ml/slurm/benchmark_pytorch_evaluation.%j.out'
+            slurm_output: '/home/cochen/cchen/ml/slurm/patch_annotation_extraction.%j.out'
             slurm_memory: '100G'
-            singularity_image: '/home/cochen/cchen/ml/docker_benchmark_pytorch_evaluation/benchmark_pytorch_evaluation_latest.sif'
+            singularity_image: '/home/cochen/cchen/ml/docker_patch_annotation_extraction/patch_annotation_extraction_latest.sif'
+            config_file_location: '/projects/ovcare/classification/cchen/ml/pipeline/extract_endometrial_patches_config.json'
             slurm_queue: 'dgxV100'
-            log_file_location: '/projects/ovcare/classification/cchen/ml/logs/test/log_my_test_20200311-220320.txt'
         parameters: 
         output_files: 
