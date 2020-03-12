@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name test_run_annotation_extraction_setup
+#SBATCH --job-name r_patch_annotation_extraction
 #SBATCH --cpus-per-task 1
 #SBATCH --output /home/cochen/cchen/ml/slurm/%j.out
 #SBATCH --error /home/cochen/cchen/ml/slurm/%j.err
@@ -11,9 +11,7 @@
 
 source /home/cochen/cchen/py2
 
-#	-i $PWD/input.txt \
 kronos run \
 	-c $PWD/../ \
-	-s $PWD/setup.txt \
-	-y test_run_patch_annotation_extraction_setup.yaml \
+	-y r_patch_annotation_extraction_setup.yaml \
 	--no_prefix 

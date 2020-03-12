@@ -1,0 +1,6 @@
+{
+	"image_location": "/projects/ovcare/classification/cchen/ml/data/endometrial/annotations",
+	"annotation_location": "/projects/ovcare/classification/cchen/ml/data/endometrial/annotations",
+	"extracted_patch_location": "/projects/ovcare/classification/cchen/ml/data/endometrial/patches",
+	"patch_extraction_size": 1024
+}
