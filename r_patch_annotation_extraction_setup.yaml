@@ -43,12 +43,12 @@ TASK_A:
             linker_location: "/projects/ovcare/WSI"
             singularity_image: "/home/cochen/cchen/ml/docker_patch_annotation_extraction/patch_annotation_extraction_latest.sif"
             slurm_job_name: "patch_annotation_extraction_slurm"
-            slurm_num_cpu: 2
+            slurm_num_cpu: 8
             slurm_output: "/home/cochen/cchen/ml/slurm/patch_annotation_extraction.%j.out"
             slurm_error: "/home/cochen/cchen/ml/slurm/patch_annotation_extraction.%j.err"
             slurm_machine: "dlhost02"
             slurm_queue: "dgxV100"
-            slurm_num_gpu: 1
+            slurm_num_gpu: 2
             slurm_max_time: "10:00:00"
             slurm_memory: "100G"
         output_files:
