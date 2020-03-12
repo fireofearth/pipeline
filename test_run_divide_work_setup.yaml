@@ -42,7 +42,7 @@ TASK_A:
             data_location: "/home/molinux01/cchen/ml/test_data_sorted"
             work_location: "/home/molinux01/cchen/ml/work/sorted"
             N: 3
-            singularity_image: "/home/cochen/cchen/ml/docker_divide_work/divide_work.simg"
+            singularity_image: "/home/cochen/cchen/ml/docker_divide_work/divide_work_latest.sif"
             slurm_job_name: "divide_work_slurm"
             slurm_num_cpu: 2
             slurm_output: "/home/cochen/cchen/ml/slurm/divide_work.%j.out"

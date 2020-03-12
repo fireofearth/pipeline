@@ -1,7 +1,7 @@
 {
 	"seed": 1,
 	"number_of_groups": 8,
-	"sorted_location": "/projects/ovcare/classification/cchen/ml/test_data_sorted_downsampled",
+	"sorted_location": "/projects/ovcare/classification/cchen/ml/test_data_downsampled_sorted",
 	"output_location": "/projects/ovcare/classification/cchen/ml/test_data_chunks.txt",
 	"min_patches": 1,
 	"target_num_patches": 1000,
