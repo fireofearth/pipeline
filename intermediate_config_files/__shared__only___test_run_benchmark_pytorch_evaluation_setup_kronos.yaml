@@ -52,7 +52,7 @@ TASK_A:
             slurm_num_gpu: 1
             slurm_output: '/home/cochen/cchen/ml/slurm/benchmark_pytorch_evaluation.%j.out'
             slurm_memory: '100G'
-            singularity_image: '/home/cochen/cchen/ml/docker_benchmark_pytorch_evaluation/benchmark-pytorch-evaluation_latest.sif'
+            singularity_image: '/home/cochen/cchen/ml/docker_benchmark_pytorch_evaluation/benchmark_pytorch_evaluation_latest.sif'
             slurm_queue: 'dgxV100'
             log_file_location: '/projects/ovcare/classification/cchen/ml/logs/test/log_my_test_20200311-220320.txt'
         parameters: 
