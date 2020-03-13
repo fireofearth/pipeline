@@ -1,6 +1,6 @@
 {
     "test_name" : "cchen_test_binary",
-    "log_folder_location": "/projects/ovcare/classification/cchen/ml/logs/train",
+    "log_folder_location": "/projects/ovcare/classification/cchen/ml/logs/test",
 	"gpu_to_use": 0,
 	"chunk_file_location": "/projects/ovcare/classification/cchen/ml/test_data_training_chunks.txt",
 	"training_chunks": "0",

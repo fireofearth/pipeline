@@ -1,4 +1,6 @@
 /2020-*/
+intermediate_config_files/
+intermediate_pipeline_scripts/
 /.*.sqlite
-/*_setup_kronos.yaml
-/*_setup.py
+*_kronos.yaml
+*.py
