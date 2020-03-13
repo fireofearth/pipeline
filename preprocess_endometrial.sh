@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name test_run_sort_patches_by_label
+#SBATCH --job-name preprocess_endometrial
 #SBATCH --cpus-per-task 1
 #SBATCH --output /home/cochen/cchen/ml/slurm/%j.out
 #SBATCH --error /home/cochen/cchen/ml/slurm/%j.err
@@ -11,9 +11,7 @@
 
 source /home/cochen/cchen/py2
 
-	# -i $PWD/input.txt \
-	# -s $PWD/setup.txt \
 kronos run \
 	-c $PWD/../ \
-	-y run_pipeline_setup.yaml \
+	-y preprocess_endometrial.yaml \
 	--no_prefix 

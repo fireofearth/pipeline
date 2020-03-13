@@ -17,9 +17,10 @@ __SHARED__:
     anno_loc:
 __SAMPLES__:
 
+# Pipeline for initial binary classification of Endometrial 100
+
 TASK_DIVIDE_WORK:
     reserved:
-        # do not change this section.
         component_name: 'kronos_component_singularity'
         component_version: '0.00.1'
         seed_version: '0.00.1'
@@ -39,8 +40,8 @@ TASK_DIVIDE_WORK:
         interval_file:
     component:
         input_files:
-            data_location: "/projects/ovcare/classification/cchen/ml/test_data"
-            work_location: "/projects/ovcare/classification/cchen/ml/work"
+            data_location: "/projects/ovcare/classification/cchen/ml/data/endometrial/patches"
+            work_location: "/projects/ovcare/classification/cchen/ml/outputs/endometrial/work"
             N: 3
             linker_location: "/projects/ovcare/classification/cchen"
             singularity_image: "/home/cochen/cchen/ml/docker_divide_work/divide_work_latest.sif"
@@ -57,7 +58,6 @@ TASK_DIVIDE_WORK:
 
 TASK_DOWNSAMPLE_DATA:
     reserved:
-        # do not change this section.
         component_name: 'kronos_component_singularity'
         component_version: '0.00.1'
         seed_version: '0.00.1'
@@ -77,7 +77,7 @@ TASK_DOWNSAMPLE_DATA:
         interval_file:
     component:
         input_files:
-            config_file_location: "/projects/ovcare/classification/cchen/ml/pipeline/downsample_data_config.json"
+            config_file_location: "/projects/ovcare/classification/cchen/ml/pipeline/downsample_endometrial_config.json"
             singularity_image: "/home/cochen/cchen/ml/docker_downsample_data/downsample_data_latest.sif"
             slurm_job_name: "downsample_data_slurm"
             slurm_num_cpu: 2
@@ -90,46 +90,44 @@ TASK_DOWNSAMPLE_DATA:
         output_files:
         parameters:
 
-TASK_SORT_PATCHES_BY_LABEL:
-    reserved:
-        # do not change this section.
-        component_name: 'kronos_component_singularity'
-        component_version: '0.00.1'
-        seed_version: '0.00.1'
-    run:
-        use_cluster: False
-        memory: '128G'
-        num_cpus: 1
-        forced_dependencies: ['TASK_DOWNSAMPLE_DATA']
-        add_breakpoint: False
-        env_vars:
-        boilerplate:
-        merge: True
-        requirements:
-            docker:
-        parallel_run: False
-        parallel_params: []
-        interval_file:
-    component:
-        input_files:
-            patch_location: "/projects/ovcare/classification/cchen/ml/test_data_downsampled"
-            sorted_location: "/projects/ovcare/classification/cchen/ml/test_data_downsampled_sorted"
-            labels_file_location: "/projects/ovcare/classification/cchen/ml/test_data_labels_file.txt"
-            singularity_image: "/home/cochen/cchen/ml/docker_sort_patches_by_label/sort_patches_by_label_latest.sif"
-            slurm_job_name: "sort_patches_by_label_slurm"
-            slurm_num_cpu: 2
-            slurm_output: "/home/cochen/cchen/ml/slurm/sort_patches_by_label.%j.out"
-            slurm_error: "/home/cochen/cchen/ml/slurm/sort_patches_by_label.%j.err"
-            slurm_machine: "dlhost02"
-            slurm_queue: "dgxV100"
-            slurm_num_gpu: 1
-            slurm_max_time: "01:00:00"
-        output_files:
-        parameters:
+# TASK_SORT_PATCHES_BY_LABEL:
+#     reserved:
+#         component_name: 'kronos_component_singularity'
+#         component_version: '0.00.1'
+#         seed_version: '0.00.1'
+#     run:
+#         use_cluster: False
+#         memory: '128G'
+#         num_cpus: 1
+#         forced_dependencies: ['TASK_DOWNSAMPLE_DATA']
+#         add_breakpoint: False
+#         env_vars:
+#         boilerplate:
+#         merge: True
+#         requirements:
+#             docker:
+#         parallel_run: False
+#         parallel_params: []
+#         interval_file:
+#     component:
+#         input_files:
+#             patch_location: "/projects/ovcare/classification/cchen/ml/data/endometrial/patches_downsampled"
+#             sorted_location: "/projects/ovcare/classification/cchen/ml/data/endometrial/patches_downsampled_sorted"
+#             labels_file_location: "/projects/ovcare/classification/cchen/ml/outputs/endometrial/labels_file.txt"
+#             singularity_image: "/home/cochen/cchen/ml/docker_sort_patches_by_label/sort_patches_by_label_latest.sif"
+#             slurm_job_name: "sort_patches_by_label_slurm"
+#             slurm_num_cpu: 2
+#             slurm_output: "/home/cochen/cchen/ml/slurm/sort_patches_by_label.%j.out"
+#             slurm_error: "/home/cochen/cchen/ml/slurm/sort_patches_by_label.%j.err"
+#             slurm_machine: "dlhost02"
+#             slurm_queue: "dgxV100"
+#             slurm_num_gpu: 1
+#             slurm_max_time: "01:00:00"
+#         output_files:
+#         parameters:
 
 TASK_CREATE_GROUPS:
     reserved:
-        # do not change this section.
         component_name: 'kronos_component_singularity'
         component_version: '0.00.1'
         seed_version: '0.00.1'
@@ -149,7 +147,7 @@ TASK_CREATE_GROUPS:
         interval_file:
     component:
         input_files:
-            config_file_location: "/projects/ovcare/classification/cchen/ml/pipeline/create_groups_config.json"
+            config_file_location: "/projects/ovcare/classification/cchen/ml/pipeline/groups_endometrial_config.json"
             singularity_image: "/home/cochen/cchen/ml/docker_create_groups/create_groups_latest.sif"
             slurm_job_name: "create_groups_slurm"
             slurm_num_cpu: 2
@@ -185,12 +183,12 @@ TASK_CREATE_TRAINING_FILES:
     component:
         input_files:
             seed: 1
-            chunk_file_location: "/projects/ovcare/classification/cchen/ml/test_data_chunks.txt"
-            output_location: "/projects/ovcare/classification/cchen/ml/test_data_training_chunks.txt"
-            training_chunks: "0_1_2_3_4"
-            validation_chunks: "5"
-            testing_chunks: "6_7"
-            number_of_patches: "1000_1000_1000"
+            chunk_file_location: "/projects/ovcare/classification/cchen/ml/data/endometrial/chunks.txt"
+            output_location: "/projects/ovcare/classification/cchen/ml/ml/data/endometrial/training_chunks.txt"
+            training_chunks: "0_1"
+            validation_chunks: "2"
+            testing_chunks: "2"
+            number_of_patches: "9999999999_9999999999_9999999999"
             linker_location: "/projects/ovcare/classification/cchen"
             singularity_image: "/home/cochen/cchen/ml/docker_create_training_files/create_training_files_latest.sif"
             slurm_job_name: "create_training_files_slurm"
