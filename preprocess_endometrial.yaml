@@ -183,7 +183,7 @@ TASK_CREATE_TRAINING_FILES:
         input_files:
             seed: 1
             chunk_file_location: "/projects/ovcare/classification/cchen/ml/data/endometrial/chunks.txt"
-            output_location: "/projects/ovcare/classification/cchen/ml/ml/data/endometrial/training_chunks.txt"
+            output_location: "/projects/ovcare/classification/cchen/ml/data/endometrial/training_chunks.txt"
             training_chunks: "0_1"
             validation_chunks: "2"
             testing_chunks: "2"

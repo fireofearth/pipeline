@@ -57,6 +57,14 @@ TASK_DOWNSAMPLE_DATA_task.update_comp_output_filenames(TASK_DOWNSAMPLE_DATA_pref
 TASK_DOWNSAMPLE_DATA_task.update_comp_env_vars({})
 TASK_DOWNSAMPLE_DATA_task.update_comp_reqs({'docker': '__REQUIRED__'})
 
+TASK_SORT_PATCHES_BY_LABEL_component = kronos_component_singularity_main.Component('kronos_component_singularity', component_parent_dir=args.components_dir)
+TASK_SORT_PATCHES_BY_LABEL_task = Task('TASK_SORT_PATCHES_BY_LABEL', TASK_SORT_PATCHES_BY_LABEL_component)
+TASK_SORT_PATCHES_BY_LABEL_task.update_comp_args(__pipeline__patch_location='/projects/ovcare/classification/cchen/ml/data/endometrial/patches_downsampled', __pipeline__slurm_max_time='10:00:00', __pipeline__slurm_error='/home/cochen/cchen/ml/slurm/sort_patches_by_label.%j.err', __pipeline__slurm_machine='dlhost02', __pipeline__slurm_job_name='sort_patches_by_label_slurm', __pipeline__sorted_location='/projects/ovcare/classification/cchen/ml/data/endometrial/patches_downsampled_sorted', __pipeline__slurm_num_cpu=2, __pipeline__slurm_num_gpu=2, __pipeline__slurm_output='/home/cochen/cchen/ml/slurm/sort_patches_by_label.%j.out', __pipeline__labels_file_location='/projects/ovcare/classification/cchen/ml/data/endometrial/labels_file.txt', __pipeline__singularity_image='/home/cochen/cchen/ml/docker_sort_patches_by_label/sort_patches_by_label_latest.sif', __pipeline__parameters=None, __pipeline__slurm_queue='dgxV100', __pipeline__output_files=None, )
+TASK_SORT_PATCHES_BY_LABEL_prefix = rm.get_filename_prefix('TASK_SORT_PATCHES_BY_LABEL')
+TASK_SORT_PATCHES_BY_LABEL_task.update_comp_output_filenames(TASK_SORT_PATCHES_BY_LABEL_prefix, rm.outputs_dir, args.no_prefix)
+TASK_SORT_PATCHES_BY_LABEL_task.update_comp_env_vars({})
+TASK_SORT_PATCHES_BY_LABEL_task.update_comp_reqs({'docker': '__REQUIRED__'})
+
 TASK_CREATE_GROUPS_component = kronos_component_singularity_main.Component('kronos_component_singularity', component_parent_dir=args.components_dir)
 TASK_CREATE_GROUPS_task = Task('TASK_CREATE_GROUPS', TASK_CREATE_GROUPS_component)
 TASK_CREATE_GROUPS_task.update_comp_args(__pipeline__config_file_location='/projects/ovcare/classification/cchen/ml/pipeline/groups_endometrial_config.json', __pipeline__slurm_max_time='10:00:00', __pipeline__slurm_error='/home/cochen/cchen/ml/slurm/create_groups.%j.err', __pipeline__slurm_machine='dlhost02', __pipeline__slurm_job_name='create_groups_slurm', __pipeline__slurm_num_cpu=2, __pipeline__slurm_num_gpu=2, __pipeline__slurm_output='/home/cochen/cchen/ml/slurm/create_groups.%j.out', __pipeline__singularity_image='/home/cochen/cchen/ml/docker_create_groups/create_groups_latest.sif', __pipeline__parameters=None, __pipeline__slurm_queue='dgxV100', __pipeline__output_files=None, )
@@ -121,7 +129,29 @@ def kronos_component_singularity_TASK_DOWNSAMPLE_DATA_function(*inargs):
         traceback.print_exc()
 
 @ruffus.follows(*[kronos_component_singularity_TASK_DOWNSAMPLE_DATA_function])
-@ruffus.parallel(TASK_CREATE_GROUPS_component.component_name, 'TASK_CREATE_GROUPS', ['TASK_DOWNSAMPLE_DATA'])
+@ruffus.parallel(TASK_SORT_PATCHES_BY_LABEL_component.component_name, 'TASK_SORT_PATCHES_BY_LABEL', ['TASK_DOWNSAMPLE_DATA'])
+@ruffus.check_if_uptodate(rm.sentinel_file_exists)
+@LogWarnErr(l)
+@LogInfo(l)
+def kronos_component_singularity_TASK_SORT_PATCHES_BY_LABEL_function(*inargs):
+    component_name, task_name, _ = inargs
+    print '%s for %s started in %s pipeline' % (task_name, component_name, args.pipeline_name)
+    run_script = rm.generate_script(TASK_SORT_PATCHES_BY_LABEL_task, None, None)
+    job_name = rm.get_filename_prefix(task_name)
+    time.sleep(1)
+    try:
+        rc = ljm.run_job(cmd=run_script, job_name=job_name)
+        job_rcs.put(rc)
+        if rc == 0:
+            rm.generate_sentinel_file(task_name)
+    except KeyboardInterrupt:
+        raise
+    except:
+        job_rcs.put(98)
+        traceback.print_exc()
+
+@ruffus.follows(*[kronos_component_singularity_TASK_SORT_PATCHES_BY_LABEL_function])
+@ruffus.parallel(TASK_CREATE_GROUPS_component.component_name, 'TASK_CREATE_GROUPS', ['TASK_SORT_PATCHES_BY_LABEL'])
 @ruffus.check_if_uptodate(rm.sentinel_file_exists)
 @LogWarnErr(l)
 @LogInfo(l)

@@ -32,7 +32,7 @@ TASK_CREATE_GROUPS:
         merge: True
         add_breakpoint: False
         memory: '128G'
-        forced_dependencies: ['TASK_DOWNSAMPLE_DATA']
+        forced_dependencies: ['TASK_SORT_PATCHES_BY_LABEL']
         env_vars: 
         parallel_params: []
     reserved: 
@@ -163,6 +163,42 @@ TASK_DOWNSAMPLE_DATA:
             slurm_output: '/home/cochen/cchen/ml/slurm/downsample_data.%j.out'
             singularity_image: '/home/cochen/cchen/ml/docker_downsample_data/downsample_data_latest.sif'
             config_file_location: '/projects/ovcare/classification/cchen/ml/pipeline/downsample_endometrial_config.json'
+            slurm_queue: 'dgxV100'
+        parameters: 
+        output_files: 
+TASK_SORT_PATCHES_BY_LABEL: 
+    run: 
+        interval_file: 
+        requirements: 
+            docker: 
+        boilerplate: 
+        use_cluster: False
+        num_cpus: 1
+        parallel_run: False
+        merge: True
+        add_breakpoint: False
+        memory: '128G'
+        forced_dependencies: ['TASK_DOWNSAMPLE_DATA']
+        env_vars: 
+        parallel_params: []
+    reserved: 
+        # do not change this section.
+        seed_version: '0.00.1'
+        component_version: '0.00.1'
+        component_name: 'kronos_component_singularity'
+    component: 
+        input_files: 
+            patch_location: '/projects/ovcare/classification/cchen/ml/data/endometrial/patches_downsampled'
+            slurm_max_time: '10:00:00'
+            slurm_error: '/home/cochen/cchen/ml/slurm/sort_patches_by_label.%j.err'
+            slurm_machine: 'dlhost02'
+            slurm_job_name: 'sort_patches_by_label_slurm'
+            sorted_location: '/projects/ovcare/classification/cchen/ml/data/endometrial/patches_downsampled_sorted'
+            slurm_num_cpu: 2
+            slurm_num_gpu: 2
+            slurm_output: '/home/cochen/cchen/ml/slurm/sort_patches_by_label.%j.out'
+            labels_file_location: '/projects/ovcare/classification/cchen/ml/data/endometrial/labels_file.txt'
+            singularity_image: '/home/cochen/cchen/ml/docker_sort_patches_by_label/sort_patches_by_label_latest.sif'
             slurm_queue: 'dgxV100'
         parameters: 
         output_files: 
