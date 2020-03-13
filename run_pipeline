@@ -11,9 +11,9 @@
 
 source /home/cochen/cchen/py2
 
+	# -i $PWD/input.txt \
+	# -s $PWD/setup.txt \
 kronos run \
 	-c $PWD/../ \
-	-i $PWD/input.txt \
-	-s $PWD/setup.txt \
 	-y run_pipeline_setup.yaml \
 	--no_prefix 
