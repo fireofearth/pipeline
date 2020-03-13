@@ -52,7 +52,7 @@ TASK_DIVIDE_WORK:
             slurm_machine: "dlhost02"
             slurm_queue: "dgxV100"
             slurm_num_gpu: 2
-            slurm_max_time: "00:20:00"
+            slurm_max_time: "10:00:00"
         output_files:
         parameters:
 
@@ -80,13 +80,13 @@ TASK_DOWNSAMPLE_DATA:
             config_file_location: "/projects/ovcare/classification/cchen/ml/pipeline/downsample_endometrial_config.json"
             singularity_image: "/home/cochen/cchen/ml/docker_downsample_data/downsample_data_latest.sif"
             slurm_job_name: "downsample_data_slurm"
-            slurm_num_cpu: 2
+            slurm_num_cpu: 8
             slurm_output: "/home/cochen/cchen/ml/slurm/downsample_data.%j.out"
             slurm_error: "/home/cochen/cchen/ml/slurm/downsample_data.%j.err"
             slurm_machine: "dlhost02"
             slurm_queue: "dgxV100"
             slurm_num_gpu: 2
-            slurm_max_time: "00:20:00"
+            slurm_max_time: "10:00:00"
         output_files:
         parameters:
 
@@ -135,7 +135,7 @@ TASK_CREATE_GROUPS:
         use_cluster: False
         memory: '128G'
         num_cpus: 1
-        forced_dependencies: ['TASK_SORT_PATCHES_BY_LABEL']
+        forced_dependencies: ['TASK_DOWNSAMPLE_DATA']
         add_breakpoint: False
         env_vars:
         boilerplate:
@@ -156,7 +156,7 @@ TASK_CREATE_GROUPS:
             slurm_machine: "dlhost02"
             slurm_queue: "dgxV100"
             slurm_num_gpu: 2
-            slurm_max_time: "00:20:00"
+            slurm_max_time: "10:00:00"
         output_files:
         parameters:
 
@@ -198,6 +198,6 @@ TASK_CREATE_TRAINING_FILES:
             slurm_machine: "dlhost02"
             slurm_queue: "dgxV100"
             slurm_num_gpu: 2
-            slurm_max_time: "00:20:00"
+            slurm_max_time: "10:00:00"
         output_files:
         parameters:
