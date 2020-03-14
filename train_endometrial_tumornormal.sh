@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name r_patch_annotation_extraction
+#SBATCH --job-name train_endometrial_tumornormal
 #SBATCH --cpus-per-task 1
 #SBATCH --output /home/cochen/cchen/ml/slurm/%j.out
 #SBATCH --error /home/cochen/cchen/ml/slurm/%j.err
@@ -7,11 +7,13 @@
 #SBATCH -p dgxV100
 #SBATCH --gres=gpu:1
 #SBATCH --time=4-90:00:00
-#SBATCH --chdir /home/cochen/cchen/ml/pipeline
+#SBATCH --chdir /projects/ovcare/classification/cchen/ml/pipeline
 
-source /home/cochen/cchen/py2
+source /projects/ovcare/classification/cchen/py2
 
 kronos run \
 	-c $PWD/../ \
-	-y r_patch_annotation_extraction_setup.yaml \
+	-i $PWD/input.txt \
+	-s $PWD/setup.txt \
+	-y train_endometrial_tumornormal.yaml \
 	--no_prefix 

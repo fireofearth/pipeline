@@ -38,16 +38,16 @@ TASK_A:
         interval_file:
     component:
         input_files:
-            config_file_location: "/projects/ovcare/classification/cchen/ml/pipeline/benchmark_pytorch_binary_config.json"
+            config_file_location: "/projects/ovcare/classification/cchen/ml/pipeline/train_endometrial_tumornormal.json"
             linker_location: "/projects/ovcare/classification/cchen/ml"
-            singularity_image: "/home/cochen/cchen/ml/docker_benchmark_pytorch/benchmark-pytorch_latest.sif"
-            slurm_job_name: "benchmark-pytorch_slurm"
-            slurm_num_cpu: 2
+            singularity_image: "/home/cochen/cchen/ml/docker_benchmark_pytorch/benchmark_pytorch_latest.sif"
+            slurm_job_name: "benchmark_pytorch_slurm"
+            slurm_num_cpu: 8
             slurm_output: "/home/cochen/cchen/ml/slurm/benchmark_pytorch_binary.%j.out"
             slurm_error: "/home/cochen/cchen/ml/slurm/benchmark_pytorch_binary.%j.err"
             slurm_machine: "dlhost02"
             slurm_queue: "dgxV100"
-            slurm_num_gpu: 1
+            slurm_num_gpu: 8
             slurm_max_time: "00:20:00"
             singularity_args: "--nv"
             slurm_memory: "100G"
