@@ -48,7 +48,7 @@ TASK_A:
             slurm_machine: "dlhost02"
             slurm_queue: "dgxV100"
             slurm_num_gpu: 8
-            slurm_max_time: "00:20:00"
+            slurm_max_time: "90:00:00"
             singularity_args: "--nv"
             slurm_memory: "100G"
         output_files:
