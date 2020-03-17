@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name gen_endometrial_script
+#SBATCH --job-name gen_endometrial_split
 #SBATCH --cpus-per-task 1
 #SBATCH --output /home/cochen/cchen/ml/slurm/%j.out
 #SBATCH --error /home/cochen/cchen/ml/slurm/%j.err
@@ -13,5 +13,5 @@ source /home/cochen/cchen/py2
 
 kronos run \
 	-c $PWD/../ \
-	-y gen_endometrial_script.yaml \
+	-y gen_endometrial_split.yaml \
 	--no_prefix 
