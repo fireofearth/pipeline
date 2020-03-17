@@ -19,8 +19,7 @@ __SAMPLES__:
 
 TASK_A:
     reserved:
-        # do not change this section.
-        component_name: 'kronos_component_docker'
+        component_name: 'kronos_component_singularity'
         component_version: '0.00.1'
         seed_version: '0.00.1'
     run:
@@ -39,17 +38,17 @@ TASK_A:
         interval_file:
     component:
         input_files:
-            log_file_location: "/home/molinux01/cchen/ml/logs/test/log_cchen_test_binary_20200305-205024.txt"
-            config_file_location: "/home/molinux01/cchen/ml/pipeline/train_endometrial_tumornormal.json"
+            log_file_location: "/projects/ovcare/classification/cchen/ml/outputs/endometrial/logs/train/log_endometrial_tumornormal_20200314-050454.txt"
+            config_file_location: "/projects/ovcare/classification/cchen/ml/pipeline/train_endometrial_tumornormal.json"
             linker_location: "/projects/ovcare/classification/cchen/ml"
             singularity_image: "/home/cochen/cchen/ml/docker_benchmark_pytorch_evaluation/benchmark_pytorch_evaluation_latest.sif"
             slurm_job_name: "eval_endometrial_tumornormal_sing"
-            slurm_num_cpu: 8
+            slurm_num_cpu: 2
             slurm_output: "/home/cochen/cchen/ml/slurm/eval_endometrial_tumornormal_sing.%j.out"
             slurm_error: "/home/cochen/cchen/ml/slurm/eval_endometrial_tumornormal_sing.%j.err"
             slurm_machine: "dlhost02"
             slurm_queue: "dgxV100"
-            slurm_num_gpu: 8
+            slurm_num_gpu: 2
             slurm_max_time: "00:20:00"
             singularity_args: "--nv"
             slurm_memory: "100G"
