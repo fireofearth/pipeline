@@ -1,0 +1,177 @@
+__PIPELINE_INFO__:
+    name: 'Pipeline'
+    version: '0.00.1'
+    author: 'cchen'
+    data_type:
+    input_type:
+    output_type:
+    host_cluster:
+    date_created: '2019-05-07'
+    date_last_updated:
+    Kronos_version: '2.3.0'
+__GENERAL__:
+    docker: '__REQUIRED__'
+__SHARED__:
+    img_loc :
+    patch_loc:
+    anno_loc:
+__SAMPLES__:
+
+# Pipeline for initial binary classification of Endometrial 100
+
+TASK_CREATE_GROUPS:
+    reserved:
+        component_name: 'kronos_component_singularity'
+        component_version: '0.00.1'
+        seed_version: '0.00.1'
+    run:
+        use_cluster: False
+        memory: '128G'
+        num_cpus: 1
+        forced_dependencies: []
+        add_breakpoint: False
+        env_vars:
+        boilerplate:
+        merge: True
+        requirements:
+            docker:
+        parallel_run: False
+        parallel_params: []
+        interval_file:
+    component:
+        input_files:
+            config_file_location: "/projects/ovcare/classification/cchen/ml/pipeline/group_ec_by_case.json"
+            singularity_image: "/home/cochen/cchen/ml/docker_create_groups_by_wsi/create_groups_by_wsi_latest.sif"
+            slurm_job_name: "create_groups_by_wsi_sing"
+            slurm_num_cpu: 2
+            slurm_output: "/home/cochen/cchen/ml/slurm/create_groups_by_wsi_sing.%j.out"
+            slurm_error: "/home/cochen/cchen/ml/slurm/create_groups_by_wsi_sing.%j.err"
+            slurm_machine: "dlhost02"
+            slurm_queue: "dgxV100"
+            slurm_num_gpu: 2
+            slurm_max_time: "10:00:00"
+        output_files:
+        parameters:
+
+TASK_CREATE_TRAINING_FILES_1:
+    reserved:
+        component_name: 'kronos_component_singularity'
+        component_version: '0.00.1'
+        seed_version: '0.00.1'
+    run:
+        use_cluster: False
+        memory: '128G'
+        num_cpus: 1
+        forced_dependencies: ['TASK_CREATE_GROUPS']
+        add_breakpoint: False
+        env_vars:
+        boilerplate:
+        merge: True
+        requirements:
+            docker:
+        parallel_run: False
+        parallel_params: []
+        interval_file:
+    component:
+        input_files:
+            seed: 1
+            chunk_file_location: "/projects/ovcare/classification/cchen/ml/data/local_ec_100/chunks.txt"
+            output_location: "/projects/ovcare/classification/cchen/ml/data/local_ec_100/training_chunks_1.txt"
+            training_chunks: "0_1"
+            validation_chunks: "2"
+            testing_chunks: "2"
+            number_of_patches: "9999999999_9999999999_9999999999"
+            linker_location: "/projects/ovcare/classification/cchen/ml"
+            singularity_image: "/home/cochen/cchen/ml/docker_create_training_files/create_training_files_latest.sif"
+            slurm_job_name: "create_training_files_slurm"
+            slurm_num_cpu: 2
+            slurm_output: "/home/cochen/cchen/ml/slurm/create_training_files_sing.%j.out"
+            slurm_error: "/home/cochen/cchen/ml/slurm/create_training_files_sing.%j.err"
+            slurm_machine: "dlhost02"
+            slurm_queue: "dgxV100"
+            slurm_num_gpu: 2
+            slurm_max_time: "10:00:00"
+        output_files:
+        parameters:
+
+TASK_CREATE_TRAINING_FILES_2:
+    reserved:
+        component_name: 'kronos_component_singularity'
+        component_version: '0.00.1'
+        seed_version: '0.00.1'
+    run:
+        use_cluster: False
+        memory: '128G'
+        num_cpus: 1
+        forced_dependencies: ['TASK_CREATE_GROUPS']
+        add_breakpoint: False
+        env_vars:
+        boilerplate:
+        merge: True
+        requirements:
+            docker:
+        parallel_run: False
+        parallel_params: []
+        interval_file:
+    component:
+        input_files:
+            seed: 1
+            chunk_file_location: "/projects/ovcare/classification/cchen/ml/data/local_ec_100/chunks.txt"
+            output_location: "/projects/ovcare/classification/cchen/ml/data/local_ec_100/training_chunks_2.txt"
+            training_chunks: "1_2"
+            validation_chunks: "0"
+            testing_chunks: "0"
+            number_of_patches: "9999999999_9999999999_9999999999"
+            linker_location: "/projects/ovcare/classification/cchen/ml"
+            singularity_image: "/home/cochen/cchen/ml/docker_create_training_files/create_training_files_latest.sif"
+            slurm_job_name: "create_training_files_slurm"
+            slurm_num_cpu: 2
+            slurm_output: "/home/cochen/cchen/ml/slurm/create_training_files_sing.%j.out"
+            slurm_error: "/home/cochen/cchen/ml/slurm/create_training_files_sing.%j.err"
+            slurm_machine: "dlhost02"
+            slurm_queue: "dgxV100"
+            slurm_num_gpu: 2
+            slurm_max_time: "10:00:00"
+        output_files:
+        parameters:
+
+TASK_CREATE_TRAINING_FILES_3:
+    reserved:
+        component_name: 'kronos_component_singularity'
+        component_version: '0.00.1'
+        seed_version: '0.00.1'
+    run:
+        use_cluster: False
+        memory: '128G'
+        num_cpus: 1
+        forced_dependencies: ['TASK_CREATE_GROUPS']
+        add_breakpoint: False
+        env_vars:
+        boilerplate:
+        merge: True
+        requirements:
+            docker:
+        parallel_run: False
+        parallel_params: []
+        interval_file:
+    component:
+        input_files:
+            seed: 1
+            chunk_file_location: "/projects/ovcare/classification/cchen/ml/data/local_ec_100/chunks.txt"
+            output_location: "/projects/ovcare/classification/cchen/ml/data/local_ec_100/training_chunks_3.txt"
+            training_chunks: "0_2"
+            validation_chunks: "1"
+            testing_chunks: "1"
+            number_of_patches: "9999999999_9999999999_9999999999"
+            linker_location: "/projects/ovcare/classification/cchen/ml"
+            singularity_image: "/home/cochen/cchen/ml/docker_create_training_files/create_training_files_latest.sif"
+            slurm_job_name: "create_training_files_slurm"
+            slurm_num_cpu: 2
+            slurm_output: "/home/cochen/cchen/ml/slurm/create_training_files_sing.%j.out"
+            slurm_error: "/home/cochen/cchen/ml/slurm/create_training_files_sing.%j.err"
+            slurm_machine: "dlhost02"
+            slurm_queue: "dgxV100"
+            slurm_num_gpu: 2
+            slurm_max_time: "10:00:00"
+        output_files:
+        parameters:

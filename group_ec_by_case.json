@@ -1,0 +1,8 @@
+{
+	"seed": 1,
+	"number_of_groups": 3,
+	"sorted_location": "/projects/ovcare/classification/cchen/ml/data/local_ec_100/patches_256_sorted",
+    "output_location": "/projects/ovcare/classification/cchen/ml/data/local_ec_100/chunks.txt",
+    "group_by_wsi": "MMRd_3425_p53abn_15162_p53wt_13732_POLE_2979",
+	"linker_location": "/projects/ovcare/classification/cchen/ml"
+}

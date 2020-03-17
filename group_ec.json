@@ -1,0 +1,10 @@
+{
+	"seed": 1,
+	"number_of_groups": 3,
+	"sorted_location": "/projects/ovcare/classification/cchen/ml/data/local_ec_100/patches_256_sorted",
+	"output_location": "/projects/ovcare/classification/cchen/ml/data/local_ec_100/chunks.txt",
+	"min_patches": 1,
+	"target_num_patches": 9999999999,
+	"full_mix": true,
+	"linker_location": "/projects/ovcare/classification/cchen/ml"
+}

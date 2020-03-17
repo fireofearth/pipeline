@@ -1,6 +1,0 @@
-{
-	"work_file_location" : "/projects/ovcare/classification/cchen/ml/work",
-	"patch_location" : "/projects/ovcare/classification/cchen/ml/test_data",
-	"downsampled_location" : "/projects/ovcare/classification/cchen/ml/test_data_downsampled",
-	"downsample_size" : 256
-}
