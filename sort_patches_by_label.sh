@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name test_run_benchmark_pytorch_evaluation
+#SBATCH --job-name sort_patches_by_label
 #SBATCH --cpus-per-task 1
 #SBATCH --output /home/cochen/cchen/ml/slurm/%j.out
 #SBATCH --error /home/cochen/cchen/ml/slurm/%j.err
@@ -7,11 +7,11 @@
 #SBATCH -p dgxV100
 #SBATCH --gres=gpu:1
 #SBATCH --time=4-90:00:00
-#SBATCH --chdir /projects/ovcare/classification/cchen/ml/pipeline
+#SBATCH --chdir /home/cochen/cchen/ml/pipeline
 
-source /projects/ovcare/classification/cchen/py2
+source /home/cochen/cchen/py2
 
 kronos run \
 	-c $PWD/../ \
-	-y test_run_benchmark_pytorch_evaluation_setup.yaml \
+	-y sort_patches_by_label.yaml \
 	--no_prefix 

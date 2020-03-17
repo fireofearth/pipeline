@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name test_run_downsample_data
+#SBATCH --job-name gen_endometrial_script
 #SBATCH --cpus-per-task 1
 #SBATCH --output /home/cochen/cchen/ml/slurm/%j.out
 #SBATCH --error /home/cochen/cchen/ml/slurm/%j.err
@@ -11,9 +11,7 @@
 
 source /home/cochen/cchen/py2
 
-#	-i $PWD/input.txt \
 kronos run \
 	-c $PWD/../ \
-	-s $PWD/setup.txt \
-	-y test_run_downsample_data_setup.yaml \
+	-y gen_endometrial_script.yaml \
 	--no_prefix 

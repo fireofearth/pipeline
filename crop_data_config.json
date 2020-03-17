@@ -1,6 +1,0 @@
-{
-	"work_file_location": "/home/molinux01/cchen/ml/work",
-	"patch_location": "/home/molinux01/cchen/ml/test_data",
-	"cropped_location": "/home/molinux01/cchen/ml/test_data_cropped",
-	"crop_size": 256
-}
