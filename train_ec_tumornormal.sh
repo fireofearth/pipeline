@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name train_endometrial_tumornormal
+#SBATCH --job-name train_ec_tumornormal
 #SBATCH --cpus-per-task 1
 #SBATCH --output /home/cochen/cchen/ml/slurm/%j.out
 #SBATCH --error /home/cochen/cchen/ml/slurm/%j.err
@@ -15,5 +15,5 @@ kronos run \
 	-c $PWD/../ \
 	-i $PWD/input.txt \
 	-s $PWD/setup.txt \
-	-y train_endometrial_tumornormal.yaml \
+	-y train_ec_tumornormal.yaml \
 	--no_prefix 

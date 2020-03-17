@@ -1,0 +1,43 @@
+{
+    "test_name" : "endometrial_tumornormal_1",
+    "sorted_location": "/projects/ovcare/classification/cchen/ml/data/local_ec_100/patches_256_sorted",
+    "log_folder_location": "/projects/ovcare/classification/cchen/ml/outputs/local_ec_100/logs/train",
+	"gpu_to_use": 0,
+	"chunk_file_location": "/projects/ovcare/classification/cchen/ml/data/local_ec_100/training_chunks_3.txt",
+	"training_chunks": "0",
+	"validation_chunks": "1",
+    "test_chunks": "2",
+    "patch_workers" : 10,
+    "training_shuffle" : true,
+    "validation_shuffle" : true,
+    "training_batches" : 9999,
+    "validation_frequency" : 100,
+    "num_validation_batches" : 10,
+    "save_interval" : 100,
+    "batch_size" : 8,
+	"model_save_location": "/projects/ovcare/classification/cchen/ml/models/local_ec_100",
+    "test_shuffle": true,
+    "test_log_folder_location": "/projects/ovcare/classification/cchen/ml/outputs/local_ec_100/logs/test",
+    "test_results_location": "/projects/ovcare/classification/cchen/ml/outputs/local_ec_100/logs/result",
+    "path_value_to_index" : {
+        "Tumor" : 1,
+        "Stroma" : 0,
+        "Necrosis": 0
+    },
+    "model_config" : {
+        "num_subtypes" : 2,
+        "deep_model" : "vgg19_bn",
+        "use_weighted_loss" : false,
+        "continue_train" : false,
+        "parameters" : {
+            "pretrained" : true
+        },
+        "optimizer" : {
+            "type" : "Adam",
+            "parameters" : {
+                "lr" : 0.001,
+                "amsgrad" : true
+            }
+        }
+    } 
+}
