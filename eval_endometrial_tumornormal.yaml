@@ -38,8 +38,8 @@ TASK_A:
         interval_file:
     component:
         input_files:
-            log_file_location: "/projects/ovcare/classification/cchen/ml/outputs/endometrial/logs/train/log_endometrial_tumornormal_20200314-050454.txt"
-            config_file_location: "/projects/ovcare/classification/cchen/ml/pipeline/train_endometrial_tumornormal.json"
+            log_file_location: "/projects/ovcare/classification/cchen/ml/outputs/local_ec_100/logs/train/log_endometrial_tumornormal_1_20200317-050320.txt"
+            config_file_location: "/projects/ovcare/classification/cchen/ml/pipeline/train_ec_tumornormal_1.json"
             linker_location: "/projects/ovcare/classification/cchen/ml"
             singularity_image: "/home/cochen/cchen/ml/docker_benchmark_pytorch_evaluation/benchmark_pytorch_evaluation_latest.sif"
             slurm_job_name: "eval_endometrial_tumornormal_sing"
@@ -49,8 +49,85 @@ TASK_A:
             slurm_machine: "dlhost02"
             slurm_queue: "dgxV100"
             slurm_num_gpu: 2
-            slurm_max_time: "00:20:00"
+            slurm_max_time: "10:00:00"
             singularity_args: "--nv"
             slurm_memory: "100G"
         output_files:
         parameters:
+
+TASK_B:
+    reserved:
+        component_name: 'kronos_component_singularity'
+        component_version: '0.00.1'
+        seed_version: '0.00.1'
+    run:
+        use_cluster: False
+        memory: '128G'
+        num_cpus: 1
+        forced_dependencies: []
+        add_breakpoint: False
+        env_vars:
+        boilerplate:
+        merge: True
+        requirements:
+            docker:
+        parallel_run: False
+        parallel_params: []
+        interval_file:
+    component:
+        input_files:
+            log_file_location: "/projects/ovcare/classification/cchen/ml/outputs/local_ec_100/logs/train/log_endometrial_tumornormal_2_20200317-060714.txt"
+            config_file_location: "/projects/ovcare/classification/cchen/ml/pipeline/train_ec_tumornormal_2.json"
+            linker_location: "/projects/ovcare/classification/cchen/ml"
+            singularity_image: "/home/cochen/cchen/ml/docker_benchmark_pytorch_evaluation/benchmark_pytorch_evaluation_latest.sif"
+            slurm_job_name: "eval_endometrial_tumornormal_sing"
+            slurm_num_cpu: 2
+            slurm_output: "/home/cochen/cchen/ml/slurm/eval_endometrial_tumornormal_sing.%j.out"
+            slurm_error: "/home/cochen/cchen/ml/slurm/eval_endometrial_tumornormal_sing.%j.err"
+            slurm_machine: "dlhost02"
+            slurm_queue: "dgxV100"
+            slurm_num_gpu: 2
+            slurm_max_time: "10:00:00"
+            singularity_args: "--nv"
+            slurm_memory: "100G"
+        output_files:
+        parameters:
+
+TASK_C:
+    reserved:
+        component_name: 'kronos_component_singularity'
+        component_version: '0.00.1'
+        seed_version: '0.00.1'
+    run:
+        use_cluster: False
+        memory: '128G'
+        num_cpus: 1
+        forced_dependencies: []
+        add_breakpoint: False
+        env_vars:
+        boilerplate:
+        merge: True
+        requirements:
+            docker:
+        parallel_run: False
+        parallel_params: []
+        interval_file:
+    component:
+        input_files:
+            log_file_location: "/projects/ovcare/classification/cchen/ml/outputs/local_ec_100/logs/train/log_endometrial_tumornormal_3_20200317-053532.txt"
+            config_file_location: "/projects/ovcare/classification/cchen/ml/pipeline/train_ec_tumornormal_3.json"
+            linker_location: "/projects/ovcare/classification/cchen/ml"
+            singularity_image: "/home/cochen/cchen/ml/docker_benchmark_pytorch_evaluation/benchmark_pytorch_evaluation_latest.sif"
+            slurm_job_name: "eval_endometrial_tumornormal_sing"
+            slurm_num_cpu: 2
+            slurm_output: "/home/cochen/cchen/ml/slurm/eval_endometrial_tumornormal_sing.%j.out"
+            slurm_error: "/home/cochen/cchen/ml/slurm/eval_endometrial_tumornormal_sing.%j.err"
+            slurm_machine: "dlhost02"
+            slurm_queue: "dgxV100"
+            slurm_num_gpu: 2
+            slurm_max_time: "10:00:00"
+            singularity_args: "--nv"
+            slurm_memory: "100G"
+        output_files:
+        parameters:
+
