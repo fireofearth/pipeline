@@ -1,6 +1,0 @@
-{
-	"work_file_location" : "/projects/ovcare/classification/cchen/ml/outputs/endometrial/work",
-	"patch_location" : "/projects/ovcare/classification/cchen/ml/data/endometrial/patches",
-	"downsampled_location" : "/projects/ovcare/classification/cchen/ml/data/endometrial/patches_downsampled",
-	"downsample_size" : 256
-}

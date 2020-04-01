@@ -1,5 +1,5 @@
 {
-    "test_name" : "endometrial_tumornormal_3",
+    "test_name" : "local_ec_100_tn_train_3",
     "sorted_location": "/projects/ovcare/classification/cchen/ml/data/local_ec_100/patches_256_sorted",
     "log_folder_location": "/projects/ovcare/classification/cchen/ml/outputs/local_ec_100/logs/train",
 	"gpu_to_use": 0,

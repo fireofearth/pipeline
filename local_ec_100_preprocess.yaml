@@ -1,0 +1,127 @@
+__PIPELINE_INFO__:
+    name: 'Pipeline'
+    version: '0.00.1'
+    author: 'cchen'
+    data_type:
+    input_type:
+    output_type:
+    host_cluster:
+    date_created: '2019-05-07'
+    date_last_updated:
+    Kronos_version: '2.3.0'
+__GENERAL__:
+    docker: '__REQUIRED__'
+__SHARED__:
+    img_loc :
+    patch_loc:
+    anno_loc:
+__SAMPLES__:
+
+# Pipeline for initial binary classification of Endometrial 100
+
+TASK_DIVIDE_WORK:
+    reserved:
+        component_name: 'kronos_component_singularity'
+        component_version: '0.00.1'
+        seed_version: '0.00.1'
+    run:
+        use_cluster: False
+        memory: '128G'
+        num_cpus: 1
+        forced_dependencies: []
+        add_breakpoint: False
+        env_vars:
+        boilerplate:
+        merge: True
+        requirements:
+            docker:
+        parallel_run: False
+        parallel_params: []
+        interval_file:
+    component:
+        input_files:
+            data_location: "/projects/ovcare/classification/cchen/ml/data/local_ec_100/patches"
+            work_location: "/projects/ovcare/classification/cchen/ml/outputs/local_ec_100/work"
+            N: 3
+            linker_location: "/projects/ovcare/classification/cchen"
+            singularity_image: "/home/cochen/cchen/ml/docker_divide_work/divide_work_latest.sif"
+            slurm_job_name: "divide_work_slurm"
+            slurm_num_cpu: 1
+            slurm_output: "/home/cochen/cchen/ml/slurm/divide_work.%j.out"
+            slurm_error: "/home/cochen/cchen/ml/slurm/divide_work.%j.err"
+            slurm_machine: "dlhost02"
+            slurm_queue: "dgxV100"
+            slurm_num_gpu: 1
+            slurm_max_time: "10:00:00"
+        output_files:
+        parameters:
+
+TASK_DOWNSAMPLE_DATA:
+    reserved:
+        component_name: 'kronos_component_singularity'
+        component_version: '0.00.1'
+        seed_version: '0.00.1'
+    run:
+        use_cluster: False
+        memory: '128G'
+        num_cpus: 1
+        forced_dependencies: ['TASK_DIVIDE_WORK']
+        add_breakpoint: False
+        env_vars:
+        boilerplate:
+        merge: True
+        requirements:
+            docker:
+        parallel_run: False
+        parallel_params: []
+        interval_file:
+    component:
+        input_files:
+            config_file_location: "/projects/ovcare/classification/cchen/ml/pipeline/local_ec_100_preprocess.json"
+            singularity_image: "/home/cochen/cchen/ml/docker_downsample_data/downsample_data_latest.sif"
+            slurm_job_name: "downsample_data_slurm"
+            slurm_num_cpu: 1
+            slurm_output: "/home/cochen/cchen/ml/slurm/downsample_data.%j.out"
+            slurm_error: "/home/cochen/cchen/ml/slurm/downsample_data.%j.err"
+            slurm_machine: "dlhost02"
+            slurm_queue: "dgxV100"
+            slurm_num_gpu: 1
+            slurm_max_time: "10:00:00"
+        output_files:
+        parameters:
+
+TASK_SORT_PATCHES_BY_LABEL:
+    reserved:
+        component_name: 'kronos_component_singularity'
+        component_version: '0.00.1'
+        seed_version: '0.00.1'
+    run:
+        use_cluster: False
+        memory: '128G'
+        num_cpus: 1
+        forced_dependencies: ['TASK_DOWNSAMPLE_DATA']
+        add_breakpoint: False
+        env_vars:
+        boilerplate:
+        merge: True
+        requirements:
+            docker:
+        parallel_run: False
+        parallel_params: []
+        interval_file:
+    component:
+        input_files:
+            patch_location: "/projects/ovcare/classification/cchen/ml/data/local_ec_100/patches_downsampled"
+            sorted_location: "/projects/ovcare/classification/cchen/ml/data/local_ec_100/patches_downsampled_sorted"
+            labels_file_location: "/projects/ovcare/classification/cchen/ml/data/local_ec_100/labels_file.txt"
+            singularity_image: "/home/cochen/cchen/ml/docker_sort_patches_by_label/sort_patches_by_label_latest.sif"
+            slurm_job_name: "sort_patches_by_label_slurm"
+            slurm_num_cpu: 1
+            slurm_output: "/home/cochen/cchen/ml/slurm/sort_patches_by_label.%j.out"
+            slurm_error: "/home/cochen/cchen/ml/slurm/sort_patches_by_label.%j.err"
+            slurm_machine: "dlhost02"
+            slurm_queue: "dgxV100"
+            slurm_num_gpu: 1
+            slurm_max_time: "10:00:00"
+        output_files:
+        parameters:

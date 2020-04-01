@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name sort_patches_by_label
+#SBATCH --job-name local_ec_100_extract
 #SBATCH --cpus-per-task 1
 #SBATCH --output /home/cochen/cchen/ml/slurm/%j.out
 #SBATCH --error /home/cochen/cchen/ml/slurm/%j.err
@@ -13,5 +13,5 @@ source /home/cochen/cchen/py2
 
 kronos run \
 	-c $PWD/../ \
-	-y sort_patches_by_label.yaml \
+	-y local_ec_100_extract.yaml \
 	--no_prefix 
