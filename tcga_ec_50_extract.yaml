@@ -1,0 +1,55 @@
+__PIPELINE_INFO__:
+    name: 'Example Pipeline'
+    version: '0.00.1'
+    author: 'mnursey'
+    data_type:
+    input_type:
+    output_type:
+    host_cluster:
+    date_created: '2019-05-07'
+    date_last_updated:
+    Kronos_version: '2.3.0'
+__GENERAL__:
+    docker: '__REQUIRED__'
+__SHARED__:
+    img_loc :
+    patch_loc:
+    anno_loc:
+__SAMPLES__:
+
+TASK_A:
+    reserved:
+        # do not change this section.
+        component_name: 'kronos_component_singularity'
+        component_version: '0.00.1'
+        seed_version: '0.00.1'
+    run:
+        use_cluster: False
+        memory: '128G'
+        num_cpus: 1
+        forced_dependencies: []
+        add_breakpoint: False
+        env_vars:
+        boilerplate:
+        merge: True
+        requirements:
+            docker:
+        parallel_run: False
+        parallel_params: []
+        interval_file:
+    component:
+        input_files:
+            config_file_location: "/projects/ovcare/classification/cchen/ml/pipeline/tcga_ec_50_extract.json"
+            linker_location: "/projects/ovcare/WSI"
+            singularity_image: "/home/cochen/cchen/ml/docker_patch_annotation_extraction/patch_annotation_extraction_latest.sif"
+            slurm_job_name: "patch_annotation_extraction_slurm"
+            slurm_num_cpu: 1
+            slurm_output: "/home/cochen/cchen/ml/slurm/tcga_ec_50_extract.%j.out"
+            slurm_error: "/home/cochen/cchen/ml/slurm/tcga_ec_50_extract.%j.err"
+            slurm_machine: "dlhost02"
+            slurm_queue: "dgxV100"
+            slurm_num_gpu: 1
+            slurm_max_time: "10:00:00"
+            slurm_memory: "100G"
+        output_files:
+        parameters:
