@@ -42,12 +42,12 @@ TASK_A:
             linker_location: "/projects/ovcare/classification/cchen/ml"
             singularity_image: "/home/cochen/cchen/ml/docker_benchmark_pytorch/benchmark_pytorch_latest.sif"
             slurm_job_name: "train_ec_tumornormal_sing"
-            slurm_num_cpu: 2
+            slurm_num_cpu: 1
             slurm_output: "/home/cochen/cchen/ml/slurm/train_ec_tumornormal_sing.%j.out"
             slurm_error: "/home/cochen/cchen/ml/slurm/train_ec_tumornormal_sing.%j.err"
             slurm_machine: "dlhost02"
             slurm_queue: "dgxV100"
-            slurm_num_gpu: 2
+            slurm_num_gpu: 1
             slurm_max_time: "90:00:00"
             singularity_args: "--nv"
             slurm_memory: "100G"
@@ -79,12 +79,12 @@ TASK_B:
             linker_location: "/projects/ovcare/classification/cchen/ml"
             singularity_image: "/home/cochen/cchen/ml/docker_benchmark_pytorch/benchmark_pytorch_latest.sif"
             slurm_job_name: "train_ec_tumornormal_sing"
-            slurm_num_cpu: 2
+            slurm_num_cpu: 1
             slurm_output: "/home/cochen/cchen/ml/slurm/train_ec_tumornormal_sing.%j.out"
             slurm_error: "/home/cochen/cchen/ml/slurm/train_ec_tumornormal_sing.%j.err"
             slurm_machine: "dlhost02"
             slurm_queue: "dgxV100"
-            slurm_num_gpu: 2
+            slurm_num_gpu: 1
             slurm_max_time: "90:00:00"
             singularity_args: "--nv"
             slurm_memory: "100G"
@@ -116,12 +116,12 @@ TASK_C:
             linker_location: "/projects/ovcare/classification/cchen/ml"
             singularity_image: "/home/cochen/cchen/ml/docker_benchmark_pytorch/benchmark_pytorch_latest.sif"
             slurm_job_name: "train_ec_tumornormal_sing"
-            slurm_num_cpu: 2
+            slurm_num_cpu: 1
             slurm_output: "/home/cochen/cchen/ml/slurm/train_ec_tumornormal_sing.%j.out"
             slurm_error: "/home/cochen/cchen/ml/slurm/train_ec_tumornormal_sing.%j.err"
             slurm_machine: "dlhost02"
             slurm_queue: "dgxV100"
-            slurm_num_gpu: 2
+            slurm_num_gpu: 1
             slurm_max_time: "90:00:00"
             singularity_args: "--nv"
             slurm_memory: "100G"
