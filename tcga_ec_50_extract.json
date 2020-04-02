@@ -1,6 +1,6 @@
 {
 	"image_location": "/projects/ovcare/classification/cchen/ml/data/tcga_ec_50/slides",
 	"annotation_location": "/projects/ovcare/classification/cchen/ml/data/tcga_ec_50/annotations",
-	"extracted_patch_location": "/projects/ovcare/classification/cchen/ml/data/tcga_ec_50/patches",
+	"extracted_patch_location": "/projects/ovcare/classification/cchen/ml/data/tcga_ec_50/patches_1024",
 	"patch_extraction_size": 1024
 }

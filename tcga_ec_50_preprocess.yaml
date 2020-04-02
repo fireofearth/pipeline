@@ -40,8 +40,8 @@ TASK_DIVIDE_WORK:
         interval_file:
     component:
         input_files:
-            data_location: "/projects/ovcare/classification/cchen/ml/data/local_ec_100/patches_1024"
-            work_location: "/projects/ovcare/classification/cchen/ml/outputs/local_ec_100/work"
+            data_location: "/projects/ovcare/classification/cchen/ml/data/tcga_ec_50/patches_1024"
+            work_location: "/projects/ovcare/classification/cchen/ml/outputs/tcga_ec_50/work"
             N: 3
             linker_location: "/projects/ovcare/classification/cchen"
             singularity_image: "/home/cochen/cchen/ml/docker_divide_work/divide_work_latest.sif"
@@ -77,7 +77,7 @@ TASK_DOWNSAMPLE_DATA:
         interval_file:
     component:
         input_files:
-            config_file_location: "/projects/ovcare/classification/cchen/ml/pipeline/local_ec_100_preprocess.json"
+            config_file_location: "/projects/ovcare/classification/cchen/ml/pipeline/tcga_ec_50_preprocess.json"
             singularity_image: "/home/cochen/cchen/ml/docker_downsample_data/downsample_data_latest.sif"
             slurm_job_name: "downsample_data_slurm"
             slurm_num_cpu: 1
@@ -111,9 +111,9 @@ TASK_SORT_PATCHES_BY_LABEL:
         interval_file:
     component:
         input_files:
-            patch_location: "/projects/ovcare/classification/cchen/ml/data/local_ec_100/patches_256"
-            sorted_location: "/projects/ovcare/classification/cchen/ml/data/local_ec_100/patches_256_sorted"
-            labels_file_location: "/projects/ovcare/classification/cchen/ml/data/local_ec_100/labels_file.txt"
+            patch_location: "/projects/ovcare/classification/cchen/ml/data/tcga_ec_50/patches_256"
+            sorted_location: "/projects/ovcare/classification/cchen/ml/data/tcga_ec_50/patches_256_sorted"
+            labels_file_location: "/projects/ovcare/classification/cchen/ml/data/tcga_ec_50/labels_file.txt"
             singularity_image: "/home/cochen/cchen/ml/docker_sort_patches_by_label/sort_patches_by_label_latest.sif"
             slurm_job_name: "sort_patches_by_label_slurm"
             slurm_num_cpu: 1

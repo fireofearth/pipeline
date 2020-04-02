@@ -1,6 +1,6 @@
 {
 	"work_file_location" : "/projects/ovcare/classification/cchen/ml/outputs/local_ec_100/work",
-	"patch_location" : "/projects/ovcare/classification/cchen/ml/data/local_ec_100/patches",
-	"downsampled_location" : "/projects/ovcare/classification/cchen/ml/data/local_ec_100/patches_downsampled",
+	"patch_location" : "/projects/ovcare/classification/cchen/ml/data/local_ec_100/patches_1024",
+	"downsampled_location" : "/projects/ovcare/classification/cchen/ml/data/local_ec_100/patches_256",
 	"downsample_size" : 256
 }

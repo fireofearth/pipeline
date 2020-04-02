@@ -1,7 +1,7 @@
 __PIPELINE_INFO__:
-    name: 'Pipeline'
+    name: 'Example Pipeline'
     version: '0.00.1'
-    author: 'cchen'
+    author: 'mnursey'
     data_type:
     input_type:
     output_type:
@@ -17,9 +17,7 @@ __SHARED__:
     anno_loc:
 __SAMPLES__:
 
-# Pipeline for initial binary classification of Endometrial 100
-
-TASK_DIVIDE_WORK:
+TASK_A:
     reserved:
         component_name: 'kronos_component_singularity'
         component_version: '0.00.1'
@@ -40,23 +38,23 @@ TASK_DIVIDE_WORK:
         interval_file:
     component:
         input_files:
-            data_location: "/projects/ovcare/classification/cchen/ml/data/local_ec_100/patches_1024"
-            work_location: "/projects/ovcare/classification/cchen/ml/outputs/local_ec_100/work"
-            N: 3
-            linker_location: "/projects/ovcare/classification/cchen"
-            singularity_image: "/home/cochen/cchen/ml/docker_divide_work/divide_work_latest.sif"
-            slurm_job_name: "divide_work_slurm"
+            config_file_location: "/projects/ovcare/classification/cchen/ml/pipeline/local_ec_100_tn_train_1.json"
+            linker_location: "/projects/ovcare/classification/cchen/ml"
+            singularity_image: "/home/cochen/cchen/ml/docker_benchmark_pytorch/benchmark_pytorch_latest.sif"
+            slurm_job_name: "train_ec_tumornormal_sing"
             slurm_num_cpu: 1
-            slurm_output: "/home/cochen/cchen/ml/slurm/divide_work.%j.out"
-            slurm_error: "/home/cochen/cchen/ml/slurm/divide_work.%j.err"
+            slurm_output: "/home/cochen/cchen/ml/slurm/train_ec_tumornormal_sing.%j.out"
+            slurm_error: "/home/cochen/cchen/ml/slurm/train_ec_tumornormal_sing.%j.err"
             slurm_machine: "dlhost02"
             slurm_queue: "dgxV100"
             slurm_num_gpu: 1
-            slurm_max_time: "10:00:00"
+            slurm_max_time: "90:00:00"
+            singularity_args: "--nv"
+            slurm_memory: "100G"
         output_files:
         parameters:
 
-TASK_DOWNSAMPLE_DATA:
+TASK_B:
     reserved:
         component_name: 'kronos_component_singularity'
         component_version: '0.00.1'
@@ -65,7 +63,7 @@ TASK_DOWNSAMPLE_DATA:
         use_cluster: False
         memory: '128G'
         num_cpus: 1
-        forced_dependencies: ['TASK_DIVIDE_WORK']
+        forced_dependencies: []
         add_breakpoint: False
         env_vars:
         boilerplate:
@@ -77,20 +75,23 @@ TASK_DOWNSAMPLE_DATA:
         interval_file:
     component:
         input_files:
-            config_file_location: "/projects/ovcare/classification/cchen/ml/pipeline/local_ec_100_preprocess.json"
-            singularity_image: "/home/cochen/cchen/ml/docker_downsample_data/downsample_data_latest.sif"
-            slurm_job_name: "downsample_data_slurm"
+            config_file_location: "/projects/ovcare/classification/cchen/ml/pipeline/local_ec_100_tn_train_2.json"
+            linker_location: "/projects/ovcare/classification/cchen/ml"
+            singularity_image: "/home/cochen/cchen/ml/docker_benchmark_pytorch/benchmark_pytorch_latest.sif"
+            slurm_job_name: "train_ec_tumornormal_sing"
             slurm_num_cpu: 1
-            slurm_output: "/home/cochen/cchen/ml/slurm/downsample_data.%j.out"
-            slurm_error: "/home/cochen/cchen/ml/slurm/downsample_data.%j.err"
+            slurm_output: "/home/cochen/cchen/ml/slurm/train_ec_tumornormal_sing.%j.out"
+            slurm_error: "/home/cochen/cchen/ml/slurm/train_ec_tumornormal_sing.%j.err"
             slurm_machine: "dlhost02"
             slurm_queue: "dgxV100"
             slurm_num_gpu: 1
-            slurm_max_time: "10:00:00"
+            slurm_max_time: "90:00:00"
+            singularity_args: "--nv"
+            slurm_memory: "100G"
         output_files:
         parameters:
 
-TASK_SORT_PATCHES_BY_LABEL:
+TASK_C:
     reserved:
         component_name: 'kronos_component_singularity'
         component_version: '0.00.1'
@@ -99,7 +100,7 @@ TASK_SORT_PATCHES_BY_LABEL:
         use_cluster: False
         memory: '128G'
         num_cpus: 1
-        forced_dependencies: ['TASK_DOWNSAMPLE_DATA']
+        forced_dependencies: []
         add_breakpoint: False
         env_vars:
         boilerplate:
@@ -111,17 +112,18 @@ TASK_SORT_PATCHES_BY_LABEL:
         interval_file:
     component:
         input_files:
-            patch_location: "/projects/ovcare/classification/cchen/ml/data/local_ec_100/patches_256"
-            sorted_location: "/projects/ovcare/classification/cchen/ml/data/local_ec_100/patches_256_sorted"
-            labels_file_location: "/projects/ovcare/classification/cchen/ml/data/local_ec_100/labels_file.txt"
-            singularity_image: "/home/cochen/cchen/ml/docker_sort_patches_by_label/sort_patches_by_label_latest.sif"
-            slurm_job_name: "sort_patches_by_label_slurm"
+            config_file_location: "/projects/ovcare/classification/cchen/ml/pipeline/local_ec_100_tn_train_3.json"
+            linker_location: "/projects/ovcare/classification/cchen/ml"
+            singularity_image: "/home/cochen/cchen/ml/docker_benchmark_pytorch/benchmark_pytorch_latest.sif"
+            slurm_job_name: "train_ec_tumornormal_sing"
             slurm_num_cpu: 1
-            slurm_output: "/home/cochen/cchen/ml/slurm/sort_patches_by_label.%j.out"
-            slurm_error: "/home/cochen/cchen/ml/slurm/sort_patches_by_label.%j.err"
+            slurm_output: "/home/cochen/cchen/ml/slurm/train_ec_tumornormal_sing.%j.out"
+            slurm_error: "/home/cochen/cchen/ml/slurm/train_ec_tumornormal_sing.%j.err"
             slurm_machine: "dlhost02"
             slurm_queue: "dgxV100"
             slurm_num_gpu: 1
-            slurm_max_time: "10:00:00"
+            slurm_max_time: "90:00:00"
+            singularity_args: "--nv"
+            slurm_memory: "100G"
         output_files:
         parameters:

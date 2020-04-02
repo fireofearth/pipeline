@@ -1,6 +1,6 @@
 {
 	"image_location": "/projects/ovcare/classification/cchen/ml/data/local_ec_100/slides",
 	"annotation_location": "/projects/ovcare/classification/cchen/ml/data/local_ec_100/annotations",
-	"extracted_patch_location": "/projects/ovcare/classification/cchen/ml/data/local_ec_100/patches",
+    "extracted_patch_location": "/projects/ovcare/classification/cchen/ml/data/local_ec_100/patches_1024",
 	"patch_extraction_size": 1024
 }

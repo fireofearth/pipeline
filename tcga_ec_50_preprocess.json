@@ -1,0 +1,6 @@
+{
+	"work_file_location" : "/projects/ovcare/classification/cchen/ml/outputs/tcga_ec_50/work",
+	"patch_location" : "/projects/ovcare/classification/cchen/ml/data/tcga_ec_50/patches_1024",
+	"downsampled_location" : "/projects/ovcare/classification/cchen/ml/data/tcga_ec_50/patches_256",
+	"downsample_size" : 256
+}
