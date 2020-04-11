@@ -89,39 +89,3 @@ TASK_DOWNSAMPLE_DATA:
             slurm_max_time: "10:00:00"
         output_files:
         parameters:
-
-TASK_SORT_PATCHES_BY_LABEL:
-    reserved:
-        component_name: 'kronos_component_singularity'
-        component_version: '0.00.1'
-        seed_version: '0.00.1'
-    run:
-        use_cluster: False
-        memory: '128G'
-        num_cpus: 1
-        forced_dependencies: ['TASK_DOWNSAMPLE_DATA']
-        add_breakpoint: False
-        env_vars:
-        boilerplate:
-        merge: True
-        requirements:
-            docker:
-        parallel_run: False
-        parallel_params: []
-        interval_file:
-    component:
-        input_files:
-            patch_location: "/projects/ovcare/classification/cchen/ml/data/tcga_ec_50/patches_256"
-            sorted_location: "/projects/ovcare/classification/cchen/ml/data/tcga_ec_50/patches_256_sorted"
-            labels_file_location: "/projects/ovcare/classification/cchen/ml/data/tcga_ec_50/labels_file.txt"
-            singularity_image: "/home/cochen/cchen/ml/docker_sort_patches_by_label/sort_patches_by_label_latest.sif"
-            slurm_job_name: "sort_patches_by_label_slurm"
-            slurm_num_cpu: 1
-            slurm_output: "/home/cochen/cchen/ml/slurm/sort_patches_by_label.%j.out"
-            slurm_error: "/home/cochen/cchen/ml/slurm/sort_patches_by_label.%j.err"
-            slurm_machine: "dlhost02"
-            slurm_queue: "dgxV100"
-            slurm_num_gpu: 1
-            slurm_max_time: "10:00:00"
-        output_files:
-        parameters:

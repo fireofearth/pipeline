@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name local_ec_100_tn_train
+#SBATCH --job-name tcga_ec_50_tn_train
 #SBATCH --cpus-per-task 1
 #SBATCH --output /home/cochen/cchen/ml/slurm/%j.out
 #SBATCH --error /home/cochen/cchen/ml/slurm/%j.err
@@ -14,5 +14,5 @@ source /projects/ovcare/classification/cchen/py2
 kronos run \
 	-c $PWD/../ \
 	-s $PWD/setup.txt \
-	-y local_ec_100_tn_train.yaml \
+	-y tcga_ec_50_tn_train.yaml \
 	--no_prefix 

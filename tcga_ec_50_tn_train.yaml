@@ -38,7 +38,7 @@ TASK_A:
         interval_file:
     component:
         input_files:
-            config_file_location: "/projects/ovcare/classification/cchen/ml/pipeline/local_ec_100_tn_train_1.json"
+            config_file_location: "/projects/ovcare/classification/cchen/ml/pipeline/tcga_ec_50_tn_train_1.json"
             linker_location: "/projects/ovcare/classification/cchen/ml"
             singularity_image: "/home/cochen/cchen/ml/docker_benchmark_pytorch/benchmark_pytorch_latest.sif"
             slurm_job_name: "train_ec_tumornormal_sing"
@@ -75,7 +75,7 @@ TASK_B:
         interval_file:
     component:
         input_files:
-            config_file_location: "/projects/ovcare/classification/cchen/ml/pipeline/local_ec_100_tn_train_2.json"
+            config_file_location: "/projects/ovcare/classification/cchen/ml/pipeline/tcga_ec_50_tn_train_2.json"
             linker_location: "/projects/ovcare/classification/cchen/ml"
             singularity_image: "/home/cochen/cchen/ml/docker_benchmark_pytorch/benchmark_pytorch_latest.sif"
             slurm_job_name: "train_ec_tumornormal_sing"
@@ -112,7 +112,7 @@ TASK_C:
         interval_file:
     component:
         input_files:
-            config_file_location: "/projects/ovcare/classification/cchen/ml/pipeline/local_ec_100_tn_train_3.json"
+            config_file_location: "/projects/ovcare/classification/cchen/ml/pipeline/tcga_ec_50_tn_train_3.json"
             linker_location: "/projects/ovcare/classification/cchen/ml"
             singularity_image: "/home/cochen/cchen/ml/docker_benchmark_pytorch/benchmark_pytorch_latest.sif"
             slurm_job_name: "train_ec_tumornormal_sing"
