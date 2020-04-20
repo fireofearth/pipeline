@@ -38,14 +38,14 @@ TASK_A:
         interval_file:
     component:
         input_files:
-            log_file_location: "/projects/ovcare/classification/cchen/ml/outputs/tcga_ec_50/logs/train/log_endometrial_tumornormal_1_20200401-022724.txt"
+            log_file_location: "/projects/ovcare/classification/cchen/ml/outputs/tcga_ec_50/logs/train/log_tcga_ec_50_tn_train_1_20200413-055341.txt"
             config_file_location: "/projects/ovcare/classification/cchen/ml/pipeline/tcga_ec_50_tn_train_1.json"
             linker_location: "/projects/ovcare/classification/cchen/ml"
             singularity_image: "/home/cochen/cchen/ml/docker_benchmark_pytorch_evaluation/benchmark_pytorch_evaluation_latest.sif"
-            slurm_job_name: "eval_endometrial_tumornormal_sing"
+            slurm_job_name: "eval_ec_tn_sing"
             slurm_num_cpu: 1
-            slurm_output: "/home/cochen/cchen/ml/slurm/eval_endometrial_tumornormal_sing.%j.out"
-            slurm_error: "/home/cochen/cchen/ml/slurm/eval_endometrial_tumornormal_sing.%j.err"
+            slurm_output: "/home/cochen/cchen/ml/slurm/eval_ec_tn_sing.%j.out"
+            slurm_error: "/home/cochen/cchen/ml/slurm/eval_ec_tn_sing.%j.err"
             slurm_machine: "dlhost02"
             slurm_queue: "dgxV100"
             slurm_num_gpu: 1
@@ -76,14 +76,14 @@ TASK_B:
         interval_file:
     component:
         input_files:
-            log_file_location: "/projects/ovcare/classification/cchen/ml/outputs/tcga_ec_50/logs/train/log_endometrial_tumornormal_2_20200401-031437.txt"
+            log_file_location: "/projects/ovcare/classification/cchen/ml/outputs/tcga_ec_50/logs/train/log_tcga_ec_50_tn_train_2_20200413-080611.txt"
             config_file_location: "/projects/ovcare/classification/cchen/ml/pipeline/tcga_ec_50_tn_train_2.json"
             linker_location: "/projects/ovcare/classification/cchen/ml"
             singularity_image: "/home/cochen/cchen/ml/docker_benchmark_pytorch_evaluation/benchmark_pytorch_evaluation_latest.sif"
-            slurm_job_name: "eval_endometrial_tumornormal_sing"
+            slurm_job_name: "eval_ec_tn_sing"
             slurm_num_cpu: 1
-            slurm_output: "/home/cochen/cchen/ml/slurm/eval_endometrial_tumornormal_sing.%j.out"
-            slurm_error: "/home/cochen/cchen/ml/slurm/eval_endometrial_tumornormal_sing.%j.err"
+            slurm_output: "/home/cochen/cchen/ml/slurm/eval_ec_tn_sing.%j.out"
+            slurm_error: "/home/cochen/cchen/ml/slurm/eval_ec_tn_sing.%j.err"
             slurm_machine: "dlhost02"
             slurm_queue: "dgxV100"
             slurm_num_gpu: 1
@@ -114,14 +114,14 @@ TASK_C:
         interval_file:
     component:
         input_files:
-            log_file_location: "/projects/ovcare/classification/cchen/ml/outputs/tcga_ec_50/logs/train/log_endometrial_tumornormal_3_20200401-025106.txt"
+            log_file_location: "/projects/ovcare/classification/cchen/ml/outputs/tcga_ec_50/logs/train/log_tcga_ec_50_tn_train_3_20200413-070018.txt"
             config_file_location: "/projects/ovcare/classification/cchen/ml/pipeline/tcga_ec_50_tn_train_3.json"
             linker_location: "/projects/ovcare/classification/cchen/ml"
             singularity_image: "/home/cochen/cchen/ml/docker_benchmark_pytorch_evaluation/benchmark_pytorch_evaluation_latest.sif"
-            slurm_job_name: "eval_endometrial_tumornormal_sing"
+            slurm_job_name: "eval_ec_tn_sing"
             slurm_num_cpu: 1
-            slurm_output: "/home/cochen/cchen/ml/slurm/eval_endometrial_tumornormal_sing.%j.out"
-            slurm_error: "/home/cochen/cchen/ml/slurm/eval_endometrial_tumornormal_sing.%j.err"
+            slurm_output: "/home/cochen/cchen/ml/slurm/eval_ec_tn_sing.%j.out"
+            slurm_error: "/home/cochen/cchen/ml/slurm/eval_ec_tn_sing.%j.err"
             slurm_machine: "dlhost02"
             slurm_queue: "dgxV100"
             slurm_num_gpu: 1
