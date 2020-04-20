@@ -19,10 +19,10 @@
     "test_shuffle": false,
     "test_log_folder_location": "/projects/ovcare/classification/cchen/ml/outputs/local_ec_100/logs/test",
     "test_results_location": "/projects/ovcare/classification/cchen/ml/outputs/local_ec_100/logs/result",
-    "path_value_to_index" : {
-        "MMRD" : 0,
-        "P53ABN" : 1,
-        "P53WT": 2,
+    "path_value_to_index" : {  
+        "MMRd" : 0,
+        "p53abn" : 1,
+        "p53wt": 2,
         "POLE": 3
     },
     "model_config" : {
