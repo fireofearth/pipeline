@@ -1,9 +1,9 @@
 {
-    "test_name" : "local_ec_100_tn_train_3",
+    "test_name" : "local_ec_100_s_train_3",
     "sorted_location": "/projects/ovcare/classification/cchen/ml/data/local_ec_100/patches_256_sorted_tumor",
     "log_folder_location": "/projects/ovcare/classification/cchen/ml/outputs/local_ec_100/logs/train",
 	"gpu_to_use": 0,
-	"chunk_file_location": "/projects/ovcare/classification/cchen/ml/data/local_ec_100/splits/split.2_3_train_1_eval.json",
+	"chunk_file_location": "/projects/ovcare/classification/cchen/ml/data/local_ec_100/splits_tumor/split.2_3_train_1_eval.json",
 	"training_chunks": "0",
 	"validation_chunks": "1",
     "test_chunks": "2",
