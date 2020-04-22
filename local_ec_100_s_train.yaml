@@ -17,79 +17,79 @@ __SHARED__:
     anno_loc:
 __SAMPLES__:
 
-TASK_A:
-    reserved:
-        component_name: 'kronos_component_singularity'
-        component_version: '0.00.1'
-        seed_version: '0.00.1'
-    run:
-        use_cluster: False
-        memory: '128G'
-        num_cpus: 1
-        forced_dependencies: []
-        add_breakpoint: False
-        env_vars:
-        boilerplate:
-        merge: True
-        requirements:
-            docker:
-        parallel_run: False
-        parallel_params: []
-        interval_file:
-    component:
-        input_files:
-            config_file_location: "/projects/ovcare/classification/cchen/ml/pipeline/local_ec_100_s_train_1.json"
-            linker_location: "/projects/ovcare/classification/cchen/ml"
-            singularity_image: "/home/cochen/cchen/ml/docker_benchmark_pytorch/benchmark_pytorch_latest.sif"
-            slurm_job_name: "local_ec_100_s_train_1"
-            slurm_num_cpu: 1
-            slurm_output: "/home/cochen/cchen/ml/slurm/local_ec_100_s_train_1.%j.out"
-            slurm_error: "/home/cochen/cchen/ml/slurm/local_ec_100_s_train_1.%j.err"
-            slurm_machine: "dlhost02"
-            slurm_queue: "dgxV100"
-            slurm_num_gpu: 1
-            slurm_max_time: "90:00:00"
-            singularity_args: "--nv"
-            slurm_memory: "100G"
-        output_files:
-        parameters:
+# TASK_A:
+#     reserved:
+#         component_name: 'kronos_component_singularity'
+#         component_version: '0.00.1'
+#         seed_version: '0.00.1'
+#     run:
+#         use_cluster: False
+#         memory: '128G'
+#         num_cpus: 1
+#         forced_dependencies: []
+#         add_breakpoint: False
+#         env_vars:
+#         boilerplate:
+#         merge: True
+#         requirements:
+#             docker:
+#         parallel_run: False
+#         parallel_params: []
+#         interval_file:
+#     component:
+#         input_files:
+#             config_file_location: "/projects/ovcare/classification/cchen/ml/pipeline/local_ec_100_s_train_1.json"
+#             linker_location: "/projects/ovcare/classification/cchen/ml"
+#             singularity_image: "/home/cochen/cchen/ml/docker_benchmark_pytorch/benchmark_pytorch_latest.sif"
+#             slurm_job_name: "local_ec_100_s_train_1"
+#             slurm_num_cpu: 1
+#             slurm_output: "/home/cochen/cchen/ml/slurm/local_ec_100_s_train_1.%j.out"
+#             slurm_error: "/home/cochen/cchen/ml/slurm/local_ec_100_s_train_1.%j.err"
+#             slurm_machine: "dlhost02"
+#             slurm_queue: "dgxV100"
+#             slurm_num_gpu: 1
+#             slurm_max_time: "90:00:00"
+#             singularity_args: "--nv"
+#             slurm_memory: "100G"
+#         output_files:
+#         parameters:
 
-TASK_B:
-    reserved:
-        component_name: 'kronos_component_singularity'
-        component_version: '0.00.1'
-        seed_version: '0.00.1'
-    run:
-        use_cluster: False
-        memory: '128G'
-        num_cpus: 1
-        forced_dependencies: []
-        add_breakpoint: False
-        env_vars:
-        boilerplate:
-        merge: True
-        requirements:
-            docker:
-        parallel_run: False
-        parallel_params: []
-        interval_file:
-    component:
-        input_files:
-            config_file_location: "/projects/ovcare/classification/cchen/ml/pipeline/local_ec_100_s_train_2.json"
-            linker_location: "/projects/ovcare/classification/cchen/ml"
-            singularity_image: "/home/cochen/cchen/ml/docker_benchmark_pytorch/benchmark_pytorch_latest.sif"
-            slurm_job_name: "local_ec_100_s_train_2"
-            slurm_num_cpu: 1
-            slurm_output: "/home/cochen/cchen/ml/slurm/local_ec_100_s_train_2.%j.out"
-            slurm_error: "/home/cochen/cchen/ml/slurm/local_ec_100_s_train_2.%j.err"
-            slurm_machine: "dlhost02"
-            slurm_queue: "dgxV100"
-            slurm_num_gpu: 1
-            slurm_max_time: "90:00:00"
-            singularity_args: "--nv"
-            slurm_memory: "100G"
-        output_files:
-        parameters:
+# TASK_B:
+#     reserved:
+#         component_name: 'kronos_component_singularity'
+#         component_version: '0.00.1'
+#         seed_version: '0.00.1'
+#     run:
+#         use_cluster: False
+#         memory: '128G'
+#         num_cpus: 1
+#         forced_dependencies: []
+#         add_breakpoint: False
+#         env_vars:
+#         boilerplate:
+#         merge: True
+#         requirements:
+#             docker:
+#         parallel_run: False
+#         parallel_params: []
+#         interval_file:
+#     component:
+#         input_files:
+#             config_file_location: "/projects/ovcare/classification/cchen/ml/pipeline/local_ec_100_s_train_2.json"
+#             linker_location: "/projects/ovcare/classification/cchen/ml"
+#             singularity_image: "/home/cochen/cchen/ml/docker_benchmark_pytorch/benchmark_pytorch_latest.sif"
+#             slurm_job_name: "local_ec_100_s_train_2"
+#             slurm_num_cpu: 1
+#             slurm_output: "/home/cochen/cchen/ml/slurm/local_ec_100_s_train_2.%j.out"
+#             slurm_error: "/home/cochen/cchen/ml/slurm/local_ec_100_s_train_2.%j.err"
+#             slurm_machine: "dlhost02"
+#             slurm_queue: "dgxV100"
+#             slurm_num_gpu: 1
+#             slurm_max_time: "90:00:00"
+#             singularity_args: "--nv"
+#             slurm_memory: "100G"
+#         output_files:
+#         parameters:
 
 TASK_C:
     reserved:
