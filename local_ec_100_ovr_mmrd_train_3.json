@@ -1,0 +1,44 @@
+{
+    "test_name" : "local_ec_100_s_train_3",
+    "sorted_location": "/projects/ovcare/classification/cchen/ml/data/local_ec_100/patches_256_sorted_tumor",
+    "log_folder_location": "/projects/ovcare/classification/cchen/ml/outputs/local_ec_100/logs/train",
+	"gpu_to_use": 0,
+	"chunk_file_location": "/projects/ovcare/classification/cchen/ml/data/local_ec_100/splits_tumor/split.2_3_train_1_eval.json",
+	"training_chunks": "0",
+	"validation_chunks": "1",
+    "test_chunks": "2",
+    "patch_workers" : 10,
+    "training_shuffle" : false,
+    "validation_shuffle" : false,
+    "training_batches" : 8880,
+    "validation_frequency" : 200,
+    "num_validation_batches" : 108,
+    "save_interval" : 999999999,
+    "batch_size" : 64,
+	"model_save_location": "/projects/ovcare/classification/cchen/ml/models/local_ec_100",
+    "test_shuffle": false,
+    "test_log_folder_location": "/projects/ovcare/classification/cchen/ml/outputs/local_ec_100/logs/test",
+    "test_results_location": "/projects/ovcare/classification/cchen/ml/outputs/local_ec_100/logs/result",
+    "path_value_to_index" : {
+        "MMRd" : 0,
+        "p53abn" : 1,
+        "p53wt": 2,
+        "POLE": 3
+    },
+    "model_config" : {
+        "num_subtypes" : 4,
+        "deep_model" : "vgg19_bn",
+        "use_weighted_loss" : false,
+        "continue_train" : false,
+        "parameters" : {
+            "pretrained" : true
+        },
+        "optimizer" : {
+            "type" : "Adam",
+            "parameters" : {
+                "lr" : 0.0002,
+                "amsgrad" : true
+            }
+        }
+    } 
+}
